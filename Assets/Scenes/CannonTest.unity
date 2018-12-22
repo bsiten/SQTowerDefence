@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b9d955a8f8b05469fb720b0cdc42dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotateVelocity: 5
+  maxRotateVelocity: 100
   fireRate: 1
   fireQuantity: 1
 --- !u!54 &755343612
