@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Networking_01 : MonoBehaviour
 {
-
     void Start()
     {
         // Photonに接続する(引数でゲームのバージョンを指定できる)

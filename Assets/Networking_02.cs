@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Networking_02 : MonoBehaviour
 {
+    PhotonPlayer[] player;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +15,10 @@ public class Networking_02 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PhotonNetwork.playerList.Count == 2)
+        player = PhotonNetwork.playerList;
+        if (player.Length == 2)
         {
-            SceneManager.LoadScene("")
+            SceneManager.LoadScene("Battle");
         }
     }
 }
