@@ -12,6 +12,8 @@ public class AreaOfEffect : MonoBehaviour
     HashSet<Entity> entity_list = new HashSet<Entity>();
     [SerializeField] float duration = 1;
 
+    [SerializeField] LayerMask layerMask;
+
     public void Start()
     {
         // Debug.Log(buff.name);

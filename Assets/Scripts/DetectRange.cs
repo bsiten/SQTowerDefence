@@ -5,7 +5,7 @@ using UnityEngine;
 public class DetectRange : MonoBehaviour
 {
     public HashSet<GameObject> detectedObjectList = new HashSet<GameObject>();
-
+    public LayerMask layerMask;
 
     void Update()
     {
