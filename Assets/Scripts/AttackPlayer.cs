@@ -48,7 +48,7 @@ public class AttackPlayer : Entity
         m_velocity.z = m_velocity.y;
         m_velocity.y = 0.0f;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             forceMinionsAttack = (!forceMinionsAttack);
             foreach (var minion in minionCompList)

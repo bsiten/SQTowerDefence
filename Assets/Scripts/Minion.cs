@@ -62,7 +62,8 @@ public class Minion : Entity
             var attackObject = NearestObject(attackRange);
             if (attackObject != null && bullet != null && fireInterval < 0)
             {
-                Fire(attackObject.transform.position);
+                var target = attackObject.transform.position;
+                Fire(new Vector3(target.x, 0, target.z));
                 fireInterval = fireRate;
             }
         }

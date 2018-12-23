@@ -30,10 +30,20 @@ public class BulletBase : Entity
     {
         status.health -= m_decreaseHealth * Time.deltaTime;
         UpdateVelocity();
-        base.Update();
+        // base.Update();
+        StatusCheck();
+        BuffProcess();
+        Move();
     }
 
-
+    protected void StatusCheck()
+    {
+        //死亡処理
+        if (status.health <= 0)
+        {
+            Dead();
+        }
+    }
     // void OnCollisionEnter(Collision other)
     void OnTriggerEnter(Collider other)
     {
@@ -57,8 +67,9 @@ public class BulletBase : Entity
     {
         if (explodeObject != null)
         {
+            var pos = transform.position;
             // Instantiate(explodeObject, transform.position, transform.rotation);
-            Instantiate(explodeObject, transform.position, new Quaternion(1, 0, 0, 0));
+            Instantiate(explodeObject, new Vector3(pos.x, 0, pos.z), new Quaternion(1, 0, 0, 0));
             Destroy(transform.gameObject);
         }
     }

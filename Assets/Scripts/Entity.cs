@@ -96,7 +96,8 @@ public class Entity : MonoBehaviour
         {
             m_velocity = m_velocity.normalized * maxMovementSpeed;
         }
-        transform.position += m_velocity * Time.deltaTime;
+        // transform.position += m_velocity * Time.deltaTime;
+        transform.position += m_velocity * speedCoefficion * Time.deltaTime;
         transform.LookAt(transform.position + m_velocity * Time.deltaTime);
     }
     //概要
