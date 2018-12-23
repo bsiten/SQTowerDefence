@@ -11,7 +11,9 @@ public class CannonBase : Entity
 
 
     // List<Collider> m_collider_list;
-    HashSet<GameObject> m_in_range_object_list = new HashSet<GameObject>();
+    // HashSet<GameObject> m_in_range_object_list = new HashSet<GameObject>();
+    // HashSet<GameObject> m_in_range_object_list;
+    DetectRange targetRange;
     [SerializeField] GameObject m_barrel;
     [SerializeField] GameObject bullet;
 
@@ -20,6 +22,14 @@ public class CannonBase : Entity
     public new void Start()
     {
         base.Start();
+        // targetRange = transform.gameObject.GetComponentInChildren<DetectRange>();
+        foreach (Transform child in transform)
+        {
+            if (child.name == "TargetRange")
+            {
+                targetRange = child.GetComponent<DetectRange>();
+            }
+        }
         // m_barrel = transform.gameObject;
         // m_barrel = transform.Find("Barrel").gameObject;
     }
@@ -31,24 +41,25 @@ public class CannonBase : Entity
         Aim();
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        var layerName = LayerMask.LayerToName(other.gameObject.layer);
-        if (layerName == "Entity")
-        {
-            m_in_range_object_list.Add(other.gameObject);
-        }
-    }
-    void OnTriggerExit(Collider other)
-    {
-        m_in_range_object_list.Remove(other.gameObject);
+    // void OnTriggerEnter(Collider other)
+    // {
+    //     var layerName = LayerMask.LayerToName(other.gameObject.layer);
+    //     if (layerName == "Entity")
+    //     {
+    //         m_in_range_object_list.Add(other.gameObject);
+    //     }
+    // }
+    // void OnTriggerExit(Collider other)
+    // {
+    //     m_in_range_object_list.Remove(other.gameObject);
 
-    }
+    // }
 
     // 概要:
     //     select target object in list & aim to it
     void Aim()
     {
+        var m_in_range_object_list = targetRange.detectedObjectList;
         if (m_in_range_object_list.Count != 0)
         {
             float min_distance = 0;

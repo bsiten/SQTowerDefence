@@ -7,11 +7,11 @@ public class Minion : Entity
     public GameObject leader;
     public GameObject follower;
     GameObject targetEnemy;
-
+    [SerializeField] GameObject attackObject;
     [SerializeField] float followerStayDistance;
     [SerializeField] float targetStayDistance;
     // [SerializeField] float speed = 10;
-    [SerializeField] bool isCharge = true;//charge or not 
+    [SerializeField] bool isCharge = true;//charge or not
 
     bool isAtacking = false;
 
