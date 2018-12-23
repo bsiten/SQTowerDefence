@@ -13,6 +13,9 @@ public class CannonBase : Entity
     // List<Collider> m_collider_list;
     HashSet<GameObject> m_in_range_object_list = new HashSet<GameObject>();
     [SerializeField] GameObject m_barrel;
+    [SerializeField] GameObject bullet;
+
+    float m_fireInterval = 1;
 
     public new void Start()
     {
@@ -30,7 +33,11 @@ public class CannonBase : Entity
 
     void OnTriggerEnter(Collider other)
     {
-        m_in_range_object_list.Add(other.gameObject);
+        var layerName = LayerMask.LayerToName(other.gameObject.layer);
+        if (layerName == "Entity")
+        {
+            m_in_range_object_list.Add(other.gameObject);
+        }
     }
     void OnTriggerExit(Collider other)
     {
@@ -48,6 +55,11 @@ public class CannonBase : Entity
             GameObject nearest_object = null;
             foreach (var in_range_object in m_in_range_object_list)
             {
+                if (in_range_object == null)
+                {
+                    m_in_range_object_list.Remove(in_range_object);
+                    continue;
+                }
                 var distance = (transform.position - in_range_object.transform.position).magnitude;
                 if (min_distance == 0 || min_distance > distance)
                 {
@@ -57,6 +69,7 @@ public class CannonBase : Entity
             }
             AimTo(nearest_object.transform.position);
         }
+        m_fireInterval -= Time.deltaTime;
     }
 
 
@@ -77,7 +90,19 @@ public class CannonBase : Entity
         var angle_move = (angle_dif < maxRotateVelocity * Time.deltaTime) ? angle_dif : maxRotateVelocity * Time.deltaTime;
         var rotate_vector = Vector3.Cross(m_barrel.transform.forward, aim).normalized * angle_move;
         m_barrel.transform.Rotate(rotate_vector);
+        if (m_fireInterval < 0)
+        {
+            Fire(target);
+            m_fireInterval = fireRate;
+        }
+    }
 
+    //概要
+    void Fire(Vector3 target)
+    {
+        var fire_bullet = GameObject.Instantiate(bullet, m_barrel.transform.position, m_barrel.transform.rotation);
+        var comp_bullet = fire_bullet.GetComponent<BulletBase>();
+        comp_bullet.SetInpactPoint(target);
     }
 
 }

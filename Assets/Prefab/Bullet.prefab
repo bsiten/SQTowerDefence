@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3781694467064015432}
   - component: {fileID: 3781694467064015415}
   - component: {fileID: 3781694467064015436}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ MonoBehaviour:
   destroyObjectList: []
   speed: 20
   aliveTime: 10
-  explodeObject: {fileID: 5141109001182149196, guid: e1d80f2e84e16ac41aa8b6f76b784b3b,
+  explodeObject: {fileID: 7093263773675737283, guid: 08583d972a03ac7459f419d4c12103ca,
     type: 3}
   inpactPoint: {x: 0, y: 0, z: 0}
   isGravity: 0
