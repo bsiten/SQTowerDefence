@@ -32,6 +32,7 @@ public class BulletBase : Entity
         base.Update();
     }
 
+
     // void OnCollisionEnter(Collision other)
     void OnTriggerEnter(Collider other)
     {
@@ -40,6 +41,13 @@ public class BulletBase : Entity
         {
             Explode();
         }
+    }
+
+    // public method
+    public void SetInpactPoint(Vector3 p)
+    {
+        inpactPoint = p;
+        CalculateVelocity();
     }
 
     //概要:
