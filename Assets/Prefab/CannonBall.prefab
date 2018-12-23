@@ -111,13 +111,13 @@ MonoBehaviour:
     health: 100
     maxHealth: 100
   destroyObjectList: []
-  speed: 20
+  speed: 10
   aliveTime: 10
   explodeObject: {fileID: 7093263773675737283, guid: 08583d972a03ac7459f419d4c12103ca,
     type: 3}
   inpactPoint: {x: 0, y: 0, z: 0}
   isGravity: 1
-  gravity: 10
+  gravity: 50
 --- !u!54 &2727066950138619938
 Rigidbody:
   m_ObjectHideFlags: 0
