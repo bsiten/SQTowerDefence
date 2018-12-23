@@ -57,7 +57,7 @@ public class Minion : Entity
         {
             Follow(leader.transform.position);
         }
-        if (isAtacking)
+        if (isAtacking || !isCharge)
         {
             var attackObject = NearestObject(attackRange);
             if (attackObject != null && bullet != null && fireInterval < 0)
@@ -97,7 +97,7 @@ public class Minion : Entity
     }
     protected void Fire(Vector3 target)
     {
-        Debug.Log("Minion Fire called");
+        // Debug.Log("Minion Fire called");
         var fire_bullet = GameObject.Instantiate(bullet, transform.position, transform.rotation);
         var comp_bullet = fire_bullet.GetComponent<BulletBase>();
         comp_bullet.SetInpactPoint(target);
@@ -123,7 +123,7 @@ public class Minion : Entity
     }
     protected new void Dead()
     {
-        Debug.Log("Minion dead");
+        // Debug.Log("Minion dead");
         if (follower.tag == "Minion")
         {
             var comp = follower.GetComponent<Minion>();

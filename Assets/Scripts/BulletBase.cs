@@ -23,7 +23,7 @@ public class BulletBase : Entity
         m_decreaseHealth = this.status.maxHealth / aliveTime;
         var pos = transform.position;
         m_inpact_time = (new Vector2(pos.x - inpactPoint.x, pos.z - inpactPoint.z)).magnitude / speed;
-        Debug.Log(transform.name + " is constructed");
+        // Debug.Log(transform.name + " is constructed");
     }
 
     public new void Update()
