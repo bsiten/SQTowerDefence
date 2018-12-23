@@ -59,26 +59,31 @@ public class CannonBase : Entity
     //     select target object in list & aim to it
     void Aim()
     {
-        var m_in_range_object_list = targetRange.detectedObjectList;
-        if (m_in_range_object_list.Count != 0)
+        // var m_in_range_object_list = targetRange.detectedObjectList;
+        // if (m_in_range_object_list.Count != 0)
+        // {
+        //     float min_distance = 0;
+        //     GameObject nearest_object = null;
+        //     foreach (var in_range_object in m_in_range_object_list)
+        //     {
+        //         if (in_range_object == null)
+        //         {
+        //             m_in_range_object_list.Remove(in_range_object);
+        //             continue;
+        //         }
+        //         var distance = (transform.position - in_range_object.transform.position).magnitude;
+        //         if (min_distance == 0 || min_distance > distance)
+        //         {
+        //             min_distance = distance;
+        //             nearest_object = in_range_object;
+        //         }
+        //     }
+        //     AimTo(nearest_object.transform.position);
+        // }
+        var targetObject = NearestObject(targetRange);
+        if (targetObject != null)
         {
-            float min_distance = 0;
-            GameObject nearest_object = null;
-            foreach (var in_range_object in m_in_range_object_list)
-            {
-                if (in_range_object == null)
-                {
-                    m_in_range_object_list.Remove(in_range_object);
-                    continue;
-                }
-                var distance = (transform.position - in_range_object.transform.position).magnitude;
-                if (min_distance == 0 || min_distance > distance)
-                {
-                    min_distance = distance;
-                    nearest_object = in_range_object;
-                }
-            }
-            AimTo(nearest_object.transform.position);
+            AimTo(targetObject.transform.position);
         }
         m_fireInterval -= Time.deltaTime;
     }

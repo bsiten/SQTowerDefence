@@ -58,12 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959fc804021fb8f44aea701a25fbf48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   detectTags:
   - AttackPlayer
   - Minion
+  rangeColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &829362534692805337
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,8 +73,8 @@ GameObject:
   - component: {fileID: 829362534692805333}
   - component: {fileID: 829362534692805332}
   - component: {fileID: 829362534692805331}
-  - component: {fileID: 829362534692805336}
-  m_Layer: 12
+  - component: {fileID: 1187430564}
+  m_Layer: 11
   m_Name: Cannon
   m_TagString: Cannon
   m_Icon: {fileID: 0}
@@ -139,20 +137,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &829362534692805336
-CapsuleCollider:
+--- !u!65 &1187430564
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829362534692805337}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 10
-  m_Height: 30
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.3, y: 5, z: 1.3}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &3139779622305875347
 GameObject:
   m_ObjectHideFlags: 0

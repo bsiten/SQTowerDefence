@@ -5,8 +5,9 @@ using UnityEngine;
 public class DetectRange : MonoBehaviour
 {
     public HashSet<GameObject> detectedObjectList = new HashSet<GameObject>();
-    public LayerMask layerMask;
+    // public LayerMask layerMask;
     public List<string> detectTags;
+    public Color rangeColor;
 
     void Update()
     {
@@ -29,7 +30,7 @@ public class DetectRange : MonoBehaviour
         // if (layerMask != null && layerMask == other.gameObject.layer)
         if (detectTags.Contains(other.gameObject.tag))
         {
-            Debug.Log(other.gameObject.name + " Enter " + transform.name);
+            // Debug.Log(other.gameObject.name + " Enter " + transform.name);
             detectedObjectList.Add(other.gameObject);
         }
     }
@@ -38,9 +39,16 @@ public class DetectRange : MonoBehaviour
         // if (layerMask != null && layerMask == other.gameObject.layer)
         if (detectTags.Contains(other.gameObject.tag))
         {
-            Debug.Log(other.gameObject.name + " Exit " + transform.name);
+            // Debug.Log(other.gameObject.name + " Exit " + transform.name);
             detectedObjectList.Remove(other.gameObject);
         }
 
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = rangeColor;
+        // var collider = transform.GetComponent<CapsuleCollider>();
+        Gizmos.DrawSphere(transform.position, 10);
+        // Gizmos.DrawSphere(transform.position, collider.radius);
     }
 }
