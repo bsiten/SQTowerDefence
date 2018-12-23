@@ -73,7 +73,7 @@ public class Entity : MonoBehaviour
     public struct Buff
     {
         public string name;    //id
-        public uint level;     //intensity
+        public float intensity;     //intensity
         // public float duration; //duration time
         // public void ReduceDuration(float time)
         // {
@@ -110,7 +110,7 @@ public class Entity : MonoBehaviour
             if (buff.name == "Damage")
             {
                 Debug.Log("Damage buff loaded");
-                status.health -= buff.level;
+                status.health -= buff.intensity;
             }
             status.buff_duration_list[buff] -= Time.deltaTime;
             if (status.buff_duration_list[buff] < 0)
