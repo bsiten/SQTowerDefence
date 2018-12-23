@@ -62,8 +62,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buff:
     name: Damage
-    level: 5
-    duration: 0
+    level: 10
+  buffDuration: 0
   duration: 0
 --- !u!54 &7093263773675737287
 Rigidbody:
