@@ -25,9 +25,19 @@ public class AttackPlayer : Entity
     {
         GetPlayerInput();
         // CheckMinionList();
-        base.Update();
+        // base.Update();
+        StatusCheck();
+        BuffProcess();
+        Move();
     }
-
+    protected new void StatusCheck()
+    {
+        //死亡処理
+        if (status.health <= 0)
+        {
+            Dead();
+        }
+    }
     //private
     void GetPlayerInput()
     {
@@ -38,9 +48,13 @@ public class AttackPlayer : Entity
         m_velocity.z = m_velocity.y;
         m_velocity.y = 0.0f;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             forceMinionsAttack = (!forceMinionsAttack);
+            foreach (var minion in minionCompList)
+            {
+                minion.ToggleAttacking(forceMinionsAttack);
+            }
         }
     }
     void initMinions()
@@ -63,6 +77,10 @@ public class AttackPlayer : Entity
             if (i != minionList.Count - 1)
             {
                 minion.follower = minionList[i + 1];
+            }
+            else
+            {
+                minion.follower = null;
             }
         }
     }

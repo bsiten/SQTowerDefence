@@ -96,7 +96,9 @@ public class Entity : MonoBehaviour
         {
             m_velocity = m_velocity.normalized * maxMovementSpeed;
         }
-        transform.position += m_velocity * Time.deltaTime;
+        // transform.position += m_velocity * Time.deltaTime;
+        transform.position += m_velocity * speedCoefficion * Time.deltaTime;
+        transform.LookAt(transform.position + m_velocity * Time.deltaTime);
     }
     //概要
     // 各buffごとの処理
@@ -112,29 +114,29 @@ public class Entity : MonoBehaviour
         {
             if (buff.name == "Damage")//instant damage
             {
-                Debug.Log(transform.gameObject.name + " Damage loaded");
+                // Debug.Log(transform.gameObject.name + " Damage loaded");
                 status.health -= buff.intensity;
             }
             if (buff.name == "Injured")//split damage
             {
-                Debug.Log("Injured buff loaded");
+                // Debug.Log("Injured buff loaded");
                 status.health -= buff.intensity * Time.deltaTime;
             }
             if (buff.name == "Heal")//instant heal
             {
-                Debug.Log("Heal loaded");
+                // Debug.Log("Heal loaded");
                 status.health += buff.intensity;
             }
             if (buff.name == "Regeneration")//split heal
             {
-                Debug.Log("Regeneration buff loaded");
+                // Debug.Log("Regeneration buff loaded");
                 status.health += buff.intensity * Time.deltaTime;
             }
             if (buff.name == "Slow")//speed down
             {
                 if (buff.intensity > 0)
                 {
-                    Debug.Log("Slow buff loaded");
+                    // Debug.Log("Slow buff loaded");
                     speedCoefficion /= buff.intensity;
                 }
             }
@@ -142,7 +144,7 @@ public class Entity : MonoBehaviour
             {
                 if (buff.intensity > 0)
                 {
-                    Debug.Log("Fast buff loaded");
+                    // Debug.Log("Fast buff loaded");
                     speedCoefficion *= buff.intensity;
                 }
             }
@@ -184,6 +186,26 @@ public class Entity : MonoBehaviour
             }
         }
         Destroy(transform.gameObject);
+    }
+
+    //DetectRange内で最も近いオブジェクトを取得
+    protected GameObject NearestObject(DetectRange range)
+    {
+        float min_distance = 0;
+        GameObject nearestObject = null;
+        if (range.detectedObjectList.Count != 0)
+        {
+            foreach (var detectedObject in range.detectedObjectList)
+            {
+                var distance = (transform.position - detectedObject.transform.position).magnitude;
+                if (min_distance == 0 || min_distance > distance)
+                {
+                    min_distance = distance;
+                    nearestObject = detectedObject;
+                }
+            }
+        }
+        return nearestObject;
     }
     //////////////////////////////////////////////////////////////////////////////
     //private member function
