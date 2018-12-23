@@ -1,0 +1,38 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GridManager : MonoBehaviour
+{
+
+    public GameObject Tile;
+    public GameObject Stage;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            int margin = i - 1;
+            if (margin < 0)
+            {
+                margin = 0;
+            }
+            for (int j = 0 + margin; j < 10 - margin; ++j)
+            {
+                Vector3 tilePos = new Vector3(Tile.transform.localScale.x * 10 * j - 11f, 1.26f, Tile.transform.localScale.z * 5 + Tile.transform.localScale.z * 10 * i);
+
+                GameObject instantObject = (GameObject)GameObject.Instantiate(Tile, tilePos, Quaternion.identity);
+
+                instantObject.transform.parent = Stage.transform;
+
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
