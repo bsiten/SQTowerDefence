@@ -9,7 +9,7 @@ public class Minion : Entity
 
     [SerializeField] float followerStayDistance;
     [SerializeField] float targetStayDistance;
-    [SerializeField] float speed = 10;
+    // [SerializeField] float speed = 10;
 
     bool isAtacking = false;
 
@@ -20,11 +20,11 @@ public class Minion : Entity
 
     public new void Update()
     {
-        if (isAtacking)
+        if (isAtacking && targetEnemy != null)
         {
             Attacking(targetEnemy.transform.position);
         }
-        else
+        else if (follower != null)
         {
             Follow(follower.transform.position);
         }

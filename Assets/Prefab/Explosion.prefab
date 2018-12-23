@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7093263773675737280}
   - component: {fileID: 7093263773675737287}
   m_Layer: 12
-  m_Name: AoE
+  m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,9 +62,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buff:
     name: Damage
-    level: 10
-  buffDuration: 0
+    intensity: 10
+  buffDuration: 1
   duration: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &7093263773675737287
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackPlayer : Entity
 {
-    public float speed = 0.2f;
+    // public float speed = 0.2f;
 
     [SerializeField] List<GameObject> minionList;
     List<Minion> minionCompList;

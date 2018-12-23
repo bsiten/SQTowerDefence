@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletBase : Entity
 {
-    [SerializeField] protected float speed = 10;
+    // [SerializeField] protected float speed = 10;
     [SerializeField] protected float aliveTime = 10;
     [SerializeField] GameObject explodeObject = null;
     [SerializeField] Vector3 inpactPoint = Vector3.zero;
