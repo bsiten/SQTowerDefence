@@ -2,23 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameMaster : MonoBehaviour
+public class BattlePhase : MonoBehaviour
 {
-
-    public GameObject PhaseManager;
+    public AttackPlayer AttackPlayer;
+    public DeffencePlayer DeffencePlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //PhaseManager.Update();
-
-
-
     }
 }

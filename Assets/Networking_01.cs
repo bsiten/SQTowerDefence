@@ -11,15 +11,12 @@ public class Networking_01 : MonoBehaviour
         PhotonNetwork.logLevel = PhotonLogLevel.Full;
         PhotonNetwork.sendRate = 60;
         PhotonNetwork.sendRateOnSerialize = 60;
+
     }
 
     // ロビーに入ると呼ばれる
     void OnJoinedLobby()
     {
-        Debug.Log("ロビーに入りました。");
-        
-        // ルームに入室する
-        PhotonNetwork.JoinRandomRoom();
     }
 
     // ルームに入室すると呼ばれる
