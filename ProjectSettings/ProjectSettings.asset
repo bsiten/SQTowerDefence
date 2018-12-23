@@ -611,10 +611,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: a0167424-53c6-4285-9e60-81d4b9d37851
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: SQTowerDefence
+  organizationId: sugahiro8787
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

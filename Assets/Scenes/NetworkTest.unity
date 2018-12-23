@@ -257,6 +257,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3108710871178249807, guid: 5143cb8f98d53ce4daff7cbf4f445324,
+        type: 3}
+      propertyPath: m_UseWebSockets
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108710871178249807, guid: 5143cb8f98d53ce4daff7cbf4f445324,
+        type: 3}
+      propertyPath: m_DontDestroyOnLoad
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108710871178249807, guid: 5143cb8f98d53ce4daff7cbf4f445324,
+        type: 3}
+      propertyPath: m_NetworkAddress
+      value: localhost
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5143cb8f98d53ce4daff7cbf4f445324, type: 3}
 --- !u!1 &1039118279
