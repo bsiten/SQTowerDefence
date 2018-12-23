@@ -40,7 +40,6 @@ public class AreaOfEffect : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("AoE onCollisionDebug");
         var entity = other.gameObject.GetComponent<Entity>();
         if (entity != null)
         {

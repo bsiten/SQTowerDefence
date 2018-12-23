@@ -54,9 +54,10 @@ MonoBehaviour:
     maxHealth: 100
   destroyObjectList: []
   maxRotateVelocity: 100
-  fireRate: 1
+  fireRate: 4
   fireQuantity: 1
   m_barrel: {fileID: 4022490149156355981}
+  bullet: {fileID: 0}
 --- !u!54 &829362534692805331
 Rigidbody:
   m_ObjectHideFlags: 0

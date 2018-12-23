@@ -17,7 +17,8 @@ public class AttackPlayer : Entity
     {
         Vector3 mousePos = Input.mousePosition;
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-        m_velocity = (mousePos - screenPos).normalized * speed;
+        // m_velocity = (mousePos - screenPos).normalized * speed;
+        m_velocity = -(mousePos - screenPos).normalized * speed;
         m_velocity.z = m_velocity.y;
         m_velocity.y = 0.0f;
         base.Update();
