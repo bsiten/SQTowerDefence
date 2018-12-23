@@ -22,16 +22,7 @@ public class PhaseManager : MonoBehaviour
 
     void PreparePhase()
     {
-         if (startTime == 0.0f)
-        {
-            startTime = PhotonNetwork.time;
-        } else
-        {
-            if (PhotonNetwork.time - startTime == 30000)
-            {
-                startTime = 0.0f;
-            }
-        }
+         
     }
 
 }
