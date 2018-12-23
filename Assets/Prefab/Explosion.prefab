@@ -63,7 +63,7 @@ MonoBehaviour:
   buff:
     name: Damage
     intensity: 10
-  buffDuration: 1
+  buffDuration: 0
   duration: 0
   layerMask:
     serializedVersion: 2

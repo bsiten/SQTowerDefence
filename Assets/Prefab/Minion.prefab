@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3696291858373499997}
   m_Layer: 0
   m_Name: Minion
-  m_TagString: Untagged
+  m_TagString: Minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90977eafb11afc94db123b2e74f7fb3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0
+  speed: 5
   maxMovementSpeed: 100
   status:
     health: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   follower: {fileID: 0}
   followerStayDistance: 1
   targetStayDistance: 1
-  speed: 5
+  isCharge: 1
 --- !u!1 &3696291858737891743
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 3696291858737891730}
   - component: {fileID: 3696291858737891729}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

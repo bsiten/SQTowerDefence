@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Minion : Entity
 {
+    public GameObject leader;
     public GameObject follower;
     GameObject targetEnemy;
 
     [SerializeField] float followerStayDistance;
     [SerializeField] float targetStayDistance;
     // [SerializeField] float speed = 10;
+    [SerializeField] bool isCharge = true;//charge or not 
 
     bool isAtacking = false;
 
@@ -20,16 +22,19 @@ public class Minion : Entity
 
     public new void Update()
     {
-        if (isAtacking && targetEnemy != null)
+        if (isAtacking && isCharge && targetEnemy != null)
         {
             Attacking(targetEnemy.transform.position);
         }
-        else if (follower != null)
+        else if (leader != null)
         {
-            Follow(follower.transform.position);
+            Follow(leader.transform.position);
         }
 
-        base.Update();
+        // base.Update();
+        StatusCheck();
+        BuffProcess();
+        Move();
     }
     protected void Follow(Vector3 target)
     {
@@ -57,5 +62,33 @@ public class Minion : Entity
     {
         isAtacking = (!isAtacking);
         return isAtacking;
+    }
+
+    protected new void StatusCheck()
+    {
+        //死亡処理
+        if (status.health <= 0)
+        {
+            this.Dead();
+        }
+    }
+    protected new void Dead()
+    {
+        Debug.Log("Minion dead");
+        if (follower.tag == "Minion")
+        {
+            var comp = follower.GetComponent<Minion>();
+            comp.leader = leader;
+        }
+        if (leader.tag == "Minion")
+        {
+            var comp = leader.GetComponent<Minion>();
+            comp.follower = follower;
+        }
+        var player = GameObject.FindWithTag("AttackPlayer");
+        var playercomp = player.GetComponent<AttackPlayer>();
+        playercomp.minionList.Remove(transform.gameObject);
+        playercomp.minionCompList.Remove(this);
+        base.Dead();
     }
 }

@@ -6,8 +6,8 @@ public class AttackPlayer : Entity
 {
     // public float speed = 0.2f;
 
-    [SerializeField] List<GameObject> minionList;
-    List<Minion> minionCompList;
+    public List<GameObject> minionList;
+    public List<Minion> minionCompList = new List<Minion>();
     [SerializeField] float attackRate;
     [SerializeField] float power;
 
@@ -16,6 +16,7 @@ public class AttackPlayer : Entity
     // Start is called before the first frame update
     public new void Start()
     {
+        initMinions();
         base.Start();
     }
 
@@ -40,6 +41,29 @@ public class AttackPlayer : Entity
         if (Input.GetMouseButtonDown(0))
         {
             forceMinionsAttack = (!forceMinionsAttack);
+        }
+    }
+    void initMinions()
+    {
+        for (int i = 0; i < minionList.Count; i++)
+        {
+            // Debug.Log(i.ToString() + "th debug");
+            var minion = minionList[i].GetComponent<Minion>();
+            minionCompList.Add(minion);
+            if (i == 0)
+            {
+                // Debug.Log(i.ToString() + "th debug");
+
+                minion.leader = transform.gameObject;
+            }
+            else
+            {
+                minion.leader = minionList[i - 1];
+            }
+            if (i != minionList.Count - 1)
+            {
+                minion.follower = minionList[i + 1];
+            }
         }
     }
     // void CheckMinionList()

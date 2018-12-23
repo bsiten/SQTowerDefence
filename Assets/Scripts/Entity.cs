@@ -28,10 +28,6 @@ public class Entity : MonoBehaviour
         StatusCheck();
         BuffProcess();
         Move();
-        foreach (var buff in status.buffList)
-        {
-            // Debug.Log(buff.name);
-        }
     }
 
     //概要：
@@ -171,20 +167,24 @@ public class Entity : MonoBehaviour
         //死亡処理
         if (status.health <= 0)
         {
-            if (destroyObjectList.Count != 0)
-            {
-                foreach (var destroyObject in destroyObjectList)
-                {
-                    Instantiate(destroyObject, transform.position, transform.rotation);
-                }
-            }
-            Destroy(transform.gameObject);
+            Dead();
         }
     }
     //概要
     //  所望の軌道になるように速度を計算
     protected void CalculateVelocity() { m_velocity = Vector3.zero; }
-
+    //死亡処理
+    protected void Dead()
+    {
+        if (destroyObjectList.Count != 0)
+        {
+            foreach (var destroyObject in destroyObjectList)
+            {
+                Instantiate(destroyObject, transform.position, transform.rotation);
+            }
+        }
+        Destroy(transform.gameObject);
+    }
     //////////////////////////////////////////////////////////////////////////////
     //private member function
 
