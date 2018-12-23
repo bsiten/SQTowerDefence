@@ -27,6 +27,10 @@ public class Entity : MonoBehaviour
         StatusCheck();
         BuffProcess();
         Move();
+        foreach (var buff in status.buffList)
+        {
+            // Debug.Log(buff.name);
+        }
     }
 
     //概要：
@@ -36,21 +40,28 @@ public class Entity : MonoBehaviour
     {
         public float health;
         public float maxHealth;
-        [SerializeField] HashSet<Buff> buffList;
+        public HashSet<Buff> buffList;
+        public Dictionary<Buff, float> buff_duration_list;
 
         public void Reset()
         {
             health = maxHealth;
             buffList = new HashSet<Buff>();
+            buff_duration_list = new Dictionary<Buff, float>();
         }
 
         public void ClearBuff()
         {
             buffList.Clear();
+            buff_duration_list.Clear();
         }
-        public void AddBuff(Buff buff)
+        public void AddBuff(Buff buff, float duration)
         {
             buffList.Add(buff);
+            if (!buff_duration_list.ContainsKey(buff))
+            {
+                buff_duration_list.Add(buff, duration);
+            }
         }
 
     }
@@ -58,11 +69,23 @@ public class Entity : MonoBehaviour
     //概要:
     // Entityに与える効果の汎用クラス
     // buffの種類ごとの処理はEntity側で実装する．
+    [System.Serializable]
     public struct Buff
     {
-        string name;    //id
-        uint level;     //intensity
-        float duration; //duration time
+        public string name;    //id
+        public uint level;     //intensity
+        // public float duration; //duration time
+        // public void ReduceDuration(float time)
+        // {
+        //     duration -= time;
+        // }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    //public method
+    public void AddBuff(Buff buff, float duration)
+    {
+        status.AddBuff(buff, duration);
     }
 
     //////////////////////////////////////////////////////////////////////////////
@@ -80,7 +103,23 @@ public class Entity : MonoBehaviour
     }
     //概要
     // 各buffごとの処理
-    protected void BuffProcess() { }
+    protected void BuffProcess()
+    {
+        foreach (var buff in status.buffList)
+        {
+            if (buff.name == "Damage")
+            {
+                Debug.Log("Damage buff loaded");
+                status.health -= buff.level;
+            }
+            status.buff_duration_list[buff] -= Time.deltaTime;
+            if (status.buff_duration_list[buff] < 0)
+            {
+                status.buffList.Remove(buff);
+                status.buff_duration_list.Remove(buff);
+            }
+        }
+    }
 
     //概要
     // Status値ごとの処理
