@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CannonBase : MonoBehaviour
+public class CannonBase : Entity
 {
 
     [SerializeField] float maxRotateVelocity = 0;
@@ -14,17 +14,18 @@ public class CannonBase : MonoBehaviour
     HashSet<GameObject> m_in_range_object_list = new HashSet<GameObject>();
     GameObject m_barrel;
 
-    void Start()
+    public new void Start()
     {
+        base.Start();
         m_barrel = transform.gameObject;
         // m_barrel = transform.Find("Barrel").gameObject;
     }
 
 
-    void Update()
+    public new void Update()
     {
+        base.Update();
         Aim();
-
     }
 
     void OnTriggerEnter(Collider other)

@@ -13,7 +13,7 @@ public class Entity : MonoBehaviour
 
     Vector3 m_velocity;
 
-    void Start()
+    public void Start()
     {
         status.Reset();
         // foreach (var destroyObject in destroyObjectList)
@@ -22,7 +22,7 @@ public class Entity : MonoBehaviour
         // }
     }
 
-    void Update()
+    public void Update()
     {
         StatusCheck();
         BuffProcess();
