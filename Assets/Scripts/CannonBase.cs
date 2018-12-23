@@ -77,7 +77,6 @@ public class CannonBase : Entity
         var angle_move = (angle_dif < maxRotateVelocity * Time.deltaTime) ? angle_dif : maxRotateVelocity * Time.deltaTime;
         var rotate_vector = Vector3.Cross(m_barrel.transform.forward, aim).normalized * angle_move;
         m_barrel.transform.Rotate(rotate_vector);
-
     }
 
 }
