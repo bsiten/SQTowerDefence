@@ -8,12 +8,14 @@ public class ScrollButton : MonoBehaviour
 {
 
     List<MatchInfoSnapshot> m_Matches = null;
+    int a;
 
     [SerializeField]
     private GameObject btnPref;  //ボタンプレハブ
 
-    void Start() { 
-
+    void Start()
+    {
+        a = 0;
     }
 
     void Update()
@@ -47,7 +49,8 @@ public class ScrollButton : MonoBehaviour
             float btnSpace = content.GetComponent<VerticalLayoutGroup>().spacing;
             float btnHeight = btnPref.GetComponent<LayoutElement>().preferredHeight;
             content.sizeDelta = new Vector2(0, (btnHeight + btnSpace) * m_Matches.Count);
-            for (int i = 0; i < m_Matches.Count; i++)
+
+            for (int i = a; i < m_Matches.Count; i++)
             {
                 int no = i;
                 //ボタン生成
@@ -62,12 +65,13 @@ public class ScrollButton : MonoBehaviour
                 //ボタンのクリックイベント登録
                 btn.transform.GetComponent<Button>().onClick.AddListener(() => OnClick(no));
             }
-
         }
         else
         {
             print("ListMatches()失敗");
         }
+        a = m_Matches.Count;
+
     }
 
     public void OnClick(int no)

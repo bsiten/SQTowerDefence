@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 
-public class MatchMaker : NetworkBehaviour
+public class MatchMaker : MonoBehaviour
 {
     // 取得したMatch情報を格納するためのList
     public List<MatchInfoSnapshot> m_Matches = null;
@@ -42,7 +42,7 @@ public class MatchMaker : NetworkBehaviour
         if (success)
         {
             print("CreateMatch()成功");
-
+            //NetworkServer.Listen(hostInfo, 9000);
             NetworkManager.singleton.StartHost(matchInfo);
         }
         else
