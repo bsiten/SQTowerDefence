@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhaseManager : MonoBehaviour
+public class OperatePlayer : MonoBehaviour
 {
-    public int PreparePhaseTime = 30;
-    public int BattlePhase = 120;
-    float startTime = 0.0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +18,19 @@ public class PhaseManager : MonoBehaviour
         
     }
 
-    void PreparePhase()
+    public void RoundStart()
     {
-         
+
+    }
+
+    public void Round()
+    {
+
+    }
+
+    public void RoundEnd()
+    {
+
     }
 
 }
