@@ -5,13 +5,13 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
 
-    [SerializeField] float movementSpeed;
-    [SerializeField] float maxMovementSpeed;
-    [SerializeField] Status status;
+    [SerializeField] protected float movementSpeed;
+    [SerializeField] protected float maxMovementSpeed;
+    [SerializeField] protected Status status;
 
-    [SerializeField] List<GameObject> destroyObjectList;
+    [SerializeField] protected List<GameObject> destroyObjectList;
 
-    Vector3 m_velocity;
+    protected Vector3 m_velocity;
 
     public void Start()
     {
@@ -100,6 +100,9 @@ public class Entity : MonoBehaviour
             Destroy(transform.gameObject);
         }
     }
+    //概要
+    //  所望の軌道になるように速度を計算
+    protected void CalculateVelocity() { m_velocity = Vector3.zero; }
 
     //////////////////////////////////////////////////////////////////////////////
     //private member function
