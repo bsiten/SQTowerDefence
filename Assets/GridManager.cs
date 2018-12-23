@@ -13,11 +13,12 @@ public class GridManager : MonoBehaviour
     {
         for (int i = 0; i < 4; ++i)
         {
-            int margin = i - 1;
-            if (margin < 0)
+            int margin = i + 1;
+            if (margin == 4 || margin == 3)
             {
-                margin = 0;
+                margin--; 
             }
+            
             for (int j = 0 + margin; j < 10 - margin; ++j)
             {
                 Vector3 tilePos = new Vector3(Tile.transform.localScale.x * 10 * j - 11f, 1.26f, Tile.transform.localScale.z * 5 + Tile.transform.localScale.z * 10 * i);
