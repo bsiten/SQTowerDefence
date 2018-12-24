@@ -60,7 +60,7 @@ public class AttackPlayer : Entity
         aimvel.z = aimvel.y;
         aimvel.y = 0.0f;
         // m_velocity = Vector3.SmoothDamp(m_velocity, aimvel, ref current_m_vel, smoothMoveTime);
-        m_velocity = ((mousePos - screenPos).magnitude > stopDistance) ? aimvel : Vector3.zero;
+        m_velocity = ((mousePos - screenPos).magnitude > istopDistance) ? aimvel : Vector3.zero;
 
         if (Input.GetMouseButton(0))
         {
