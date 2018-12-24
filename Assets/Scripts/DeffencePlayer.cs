@@ -9,6 +9,7 @@ public class DeffencePlayer : Entity
     [SerializeField] GameObject bullet;
     [SerializeField] float fireRate;
     [SerializeField] float fireDistance;
+    [SerializeField] Vector3 launchPoint;
     float fireInterval;
 
     public int PlayerID;
@@ -38,7 +39,9 @@ public class DeffencePlayer : Entity
         {
             if (fireInterval < 0)
             {
-                Fire(new Vector3(transform.forward.x, 0, transform.forward.z) * fireDistance + transform.position);
+                // Fire(new Vector3(transform.forward.x, 0, transform.forward.z) * fireDistance + transform.position);
+                Fire(transform.forward * fireDistance + transform.position + launchPoint);
+                // Fire((transform.forward + launchPoint) * fireDistance + transform.position);
                 fireInterval = fireRate;
             }
         }
@@ -127,7 +130,7 @@ public class DeffencePlayer : Entity
     void Fire(Vector3 target)
     {
         // var attackObject = Instantiate(bullet, transform.position + transform.forward * fireDistance, transform.rotation);
-        var fire_bullet = GameObject.Instantiate(bullet, transform.position + transform.forward, transform.rotation);
+        var fire_bullet = GameObject.Instantiate(bullet, transform.position + launchPoint + transform.forward, transform.rotation);
         var comp_bullet = fire_bullet.GetComponent<BulletBase>();
         comp_bullet.SetInpactPoint(target);
     }

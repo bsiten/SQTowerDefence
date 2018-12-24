@@ -53,11 +53,14 @@ public class BulletBase : Entity
         {
             if (tag == other.gameObject.tag)
             {
+                // Debug.Log(transform.name + "'s " + tag + " explode called");
+
                 Explode();
             }
         }
         if (layerName == "Floor")
         {
+            // Debug.Log(transform.name + "'s Floor explode called");
             Explode();
         }
     }
@@ -120,6 +123,7 @@ public class BulletBase : Entity
 
     protected new void Dead()
     {
+        // Debug.Log(transform.name + "'s dead explode called");
         Explode();
         base.Dead();
     }

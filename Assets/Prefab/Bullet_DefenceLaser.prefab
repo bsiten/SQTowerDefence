@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5500267767958624854}
   - component: {fileID: 5500267767958624853}
   - component: {fileID: 5500267767958624811}
-  - component: {fileID: 5500267767958624852}
   - component: {fileID: 5500267767958624848}
+  - component: {fileID: 4847428752862553019}
   m_Layer: 13
   m_Name: Bullet_DefenceBeam
   m_TagString: Untagged
@@ -108,19 +108,6 @@ MonoBehaviour:
   targetTag:
   - Minion
   - AtackPlayer
---- !u!135 &5500267767958624852
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5500267767958624810}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5500267767958624848
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,3 +124,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &4847428752862553019
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500267767958624810}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -0.5}

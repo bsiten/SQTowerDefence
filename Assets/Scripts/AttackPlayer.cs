@@ -9,9 +9,9 @@ public class AttackPlayer : Entity
 
     public List<GameObject> chargeMinionList;
     public List<GameObject> supportMinionList;
-    public List<Minion> chargeMinionCompList = new List<Minion>();
+    public List<Minion> chargeMinionCompList;
     Dictionary<Minion, Vector3> chargeMinionRandPos;
-    public List<Minion> supportMinionCompList = new List<Minion>();
+    public List<Minion> supportMinionCompList;
     Dictionary<Minion, Vector3> supportMinionRandPos;
     [SerializeField] float fireRate;
     [SerializeField] GameObject bullet;
@@ -21,11 +21,12 @@ public class AttackPlayer : Entity
     Vector3 current_m_vel;
     bool forceMinionsAttack;
     float fireInterval;
+    bool toggleStop = false;
 
     // Start is called before the first frame update
     public new void Start()
     {
-        initMinions();
+        initMinionList();
         base.Start();
     }
 
@@ -37,6 +38,10 @@ public class AttackPlayer : Entity
         // base.Update();
         BuffProcess();
         StatusCheck();
+        if (toggleStop)
+        {
+            m_velocity = Vector3.zero;
+        }
         Move();
         fireInterval -= Time.deltaTime;
     }
@@ -81,9 +86,18 @@ public class AttackPlayer : Entity
                 minion.ToggleAttacking(forceMinionsAttack);
             }
         }
+        if (Input.GetMouseButton(2))
+        {
+            toggleStop = true;
+        }
+        else { toggleStop = false; }
     }
-    void initMinions()
+    public void initMinionList()
     {
+        chargeMinionList = new List<GameObject>();
+        chargeMinionCompList = new List<Minion>();
+        supportMinionList = new List<GameObject>();
+        supportMinionCompList = new List<Minion>();
         GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");
         foreach (var minion in minions)
         {
@@ -165,6 +179,8 @@ public class AttackPlayer : Entity
         // Destroy(transform.gameObject);
         transform.gameObject.SetActive(false);
     }
+
+    //target方向に攻撃を行う
     void Fire(Vector3 target)
     {
         // var attackObject = Instantiate(bullet, transform.position + transform.forward * fireDistance, transform.rotation);

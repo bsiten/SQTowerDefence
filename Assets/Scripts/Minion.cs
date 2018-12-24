@@ -13,7 +13,8 @@ public class Minion : Entity
     // [SerializeField] float speed = 10;
     [SerializeField] public bool isCharge = true;//charge or not
     [SerializeField] float fireRate;
-    [SerializeField] Vector3 offset;
+    [SerializeField] Vector3 followOffset;
+    [SerializeField] Vector3 launchPoint;
 
     DetectRange targetRange;
     DetectRange attackRange;
@@ -67,7 +68,9 @@ public class Minion : Entity
             {
                 var target = attackObject.transform.position;
                 // Fire(new Vector3(target.x, 0, target.z));
-                Fire(target);
+                // Fire(new Vector3(target.x, transform.position.y, target.z));
+                Fire(new Vector3(target.x, transform.position.y, target.z) + launchPoint);
+                // Fire(target);
                 fireInterval = fireRate;
             }
         }
@@ -94,8 +97,8 @@ public class Minion : Entity
             }
             else
             {
-                // m_velocity = (xzTarget + (transform.rotation * offset)).normalized * speed;
-                m_velocity = (xzTarget + offset).normalized * speed;
+                // m_velocity = (xzTarget + (transform.rotation * followOffset)).normalized * speed;
+                m_velocity = (xzTarget + followOffset).normalized * speed;
             }
         }
         else
@@ -116,7 +119,7 @@ public class Minion : Entity
     protected void Fire(Vector3 target)
     {
         // Debug.Log("Minion Fire called");
-        var fire_bullet = GameObject.Instantiate(bullet, transform.position, transform.rotation);
+        var fire_bullet = GameObject.Instantiate(bullet, transform.position + transform.rotation * launchPoint, transform.rotation);
         var comp_bullet = fire_bullet.GetComponent<BulletBase>();
         comp_bullet.SetInpactPoint(target);
     }
@@ -153,16 +156,19 @@ public class Minion : Entity
             comp.follower = follower;
         }
         var player = GameObject.FindWithTag("AttackPlayer");
-        var playercomp = player.GetComponent<AttackPlayer>();
-        if (isCharge)
+        if (player != null)
         {
-            playercomp.chargeMinionList.Remove(transform.gameObject);
-            playercomp.chargeMinionCompList.Remove(this);
-        }
-        else
-        {
-            playercomp.supportMinionList.Remove(transform.gameObject);
-            playercomp.supportMinionCompList.Remove(this);
+            var playercomp = player.GetComponent<AttackPlayer>();
+            if (isCharge)
+            {
+                playercomp.chargeMinionList.Remove(transform.gameObject);
+                playercomp.chargeMinionCompList.Remove(this);
+            }
+            else
+            {
+                playercomp.supportMinionList.Remove(transform.gameObject);
+                playercomp.supportMinionCompList.Remove(this);
+            }
         }
         base.Dead();
     }

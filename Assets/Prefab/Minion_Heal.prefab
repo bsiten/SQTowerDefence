@@ -151,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888166611059450782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7443392, y: 0.54065967, z: 8.99}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2888166611304281682}
@@ -171,7 +171,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Size: {x: 0.5, y: 10, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2888166611059450783
 MonoBehaviour:
@@ -197,9 +197,10 @@ MonoBehaviour:
   bullet: {fileID: 1516903556762838664, guid: 68f7cbe2f68fa6a40bee28acf22f611f, type: 3}
   followerStayDistance: 1
   targetStayDistance: 1
-  isCharge: 1
+  isCharge: 0
   fireRate: 1
-  offset: {x: 1, y: 0, z: 0}
+  followOffset: {x: 1, y: 0, z: 0}
+  launchPoint: {x: 0, y: 3, z: 0}
 --- !u!54 &1972306053314514234
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -242,7 +243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888166611304281693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 2888166611059450781}
@@ -273,7 +274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e87e75c7866aad14f9b3cd1c87a0d526, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
