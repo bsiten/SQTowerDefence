@@ -6,6 +6,10 @@ public class DeffencePlayer : Entity
 {
     // Vector3 vel = Vector3.zero;
     [SerializeField] GameObject mainCamera;
+    [SerializeField] GameObject bullet;
+    [SerializeField] float fireRate;
+    [SerializeField] float fireDistance;
+    float fireInterval;
 
 
     // Start is called before the first frame update
@@ -22,6 +26,15 @@ public class DeffencePlayer : Entity
         var right = mainCamera.transform.right;
         var forward = new Vector3(-right.z, 0, right.x);
         //keyboard controll
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey("joystick button 4") || Input.GetKey("joystick button 5"))
+        {
+            if (fireInterval < 0)
+            {
+                Fire(new Vector3(transform.forward.x, 0, transform.forward.z) * fireDistance + transform.position);
+                fireInterval = fireRate;
+            }
+        }
+        //move
         if (Input.GetKey(KeyCode.W))
         {
             // vel -= transform.forward * speed;
@@ -48,6 +61,15 @@ public class DeffencePlayer : Entity
         vel += Input.GetAxis("Vertical") * forward * speed;
         m_velocity = vel;
         base.Update();
-        vel = Vector3.zero;
+        fireInterval -= Time.deltaTime;
+
+    }
+
+    void Fire(Vector3 target)
+    {
+        // var attackObject = Instantiate(bullet, transform.position + transform.forward * fireDistance, transform.rotation);
+        var fire_bullet = GameObject.Instantiate(bullet, transform.position + transform.forward, transform.rotation);
+        var comp_bullet = fire_bullet.GetComponent<BulletBase>();
+        comp_bullet.SetInpactPoint(target);
     }
 }

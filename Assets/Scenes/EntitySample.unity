@@ -483,6 +483,9 @@ MonoBehaviour:
     maxHealth: 100
   destroyObjectList: []
   mainCamera: {fileID: 584703519}
+  bullet: {fileID: 8941144034571537970, guid: 00134d95fa321fa48aec08373296f7e5, type: 3}
+  fireRate: 0
+  fireDistance: 20
 --- !u!65 &710775575
 BoxCollider:
   m_ObjectHideFlags: 0
