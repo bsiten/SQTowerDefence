@@ -11,6 +11,14 @@ public class DeffencePlayer : Entity
     [SerializeField] float fireDistance;
     float fireInterval;
 
+    public int PlayerID;
+
+    public LayerMask mask;
+
+    public List<GameObject> Cannons;
+
+    public int CannonLimit = 8;
+    public int NowCannonNum = 0;
 
     // Start is called before the first frame update
     new void Start()
@@ -34,6 +42,58 @@ public class DeffencePlayer : Entity
                 fireInterval = fireRate;
             }
         }
+
+        // 1.
+        // Rayの作成
+        Ray ray = new Ray(transform.position, transform.forward + new Vector3(0, -0.6f, 0));
+
+        // 2.		
+        // Rayが衝突したコライダーの情報を得る
+        RaycastHit hit;
+        // Rayが衝突したかどうか
+        if (Physics.Raycast(ray, out hit, mask))
+        {
+            // Examples
+            // 衝突したオブジェクトの色を赤に変える
+            var plane = hit.collider.GetComponent<Plane>();
+            //hit.collider.GetComponent<Plane>().IsColorChange = true;
+            if (plane != null)
+            {
+                hit.collider.GetComponent<Plane>().IsColorChange = true;
+
+                //B button
+                if (!hit.collider.GetComponent<Plane>().IsLocated && NowCannonNum <= CannonLimit)
+                { 
+                    if (Input.GetKey("joystick button 1"))
+                    {
+                        hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon");
+                        //GameObject Instant = Instantiate(obj, hit.collider.GetComponent<Plane>().transform.position, Quaternion.identity);
+                        //Cannons.Add(Instant);
+                        hit.collider.GetComponent<Plane>().LocateCannon();
+                        ++NowCannonNum;
+                    }
+                    if (Input.GetKey("joystick button 2"))
+                    {
+                        hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon_Beam");
+                        //GameObject Instant = Instantiate(obj, hit.collider.GetComponent<Plane>().transform.position, Quaternion.identity);
+                        //Cannons.Add(Instant);
+                        hit.collider.GetComponent<Plane>().LocateCannon();
+                        ++NowCannonNum;
+                    }
+                    if (Input.GetKey("joystick button 3"))
+                    {
+                        hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon_SlowRange");
+                        //GameObject Instant = Instantiate(obj, hit.collider.GetComponent<Plane>().transform.position, Quaternion.identity);
+                        //Cannons.Add(Instant);
+                        hit.collider.GetComponent<Plane>().LocateCannon();
+                        ++NowCannonNum;
+                    }
+                }
+            }
+        }
+
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 1.0f);
+
         //move
         if (Input.GetKey(KeyCode.W))
         {
@@ -62,7 +122,6 @@ public class DeffencePlayer : Entity
         m_velocity = vel;
         base.Update();
         fireInterval -= Time.deltaTime;
-
     }
 
     void Fire(Vector3 target)

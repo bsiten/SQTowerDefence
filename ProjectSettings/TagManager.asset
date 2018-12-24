@@ -10,6 +10,7 @@ TagManager:
   - Tower
   - DefencePlayer
   - SupportMinion
+  - Plane
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Entity
   - DetectRange
   - Bullet
-  - 
+  - Plane
   - 
   - 
   - 

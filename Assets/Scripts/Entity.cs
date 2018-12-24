@@ -7,7 +7,7 @@ public class Entity : MonoBehaviour
 
     [SerializeField] protected float speed;
     [SerializeField] protected float maxMovementSpeed;
-    [SerializeField] protected Status status;
+    [SerializeField] public Status status;
 
     [SerializeField] protected List<GameObject> destroyObjectList;
 
