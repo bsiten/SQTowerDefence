@@ -17,6 +17,7 @@ public class Minion : Entity
 
     DetectRange targetRange;
     DetectRange attackRange;
+    GameObject targetWhenLeaderMissing;
     float fireInterval;
 
     bool isAtacking = false;
@@ -67,6 +68,11 @@ public class Minion : Entity
                 Fire(new Vector3(target.x, 0, target.z));
                 fireInterval = fireRate;
             }
+        }
+        if (leader == null)
+        {
+            leader = GameObject.FindWithTag("Tower");
+            isCharge = true;
         }
         fireInterval -= Time.deltaTime;
 
@@ -139,7 +145,7 @@ public class Minion : Entity
             var comp = follower.GetComponent<Minion>();
             comp.leader = leader;
         }
-        if (leader.tag != null && leader.tag == "Minion")
+        if (leader != null && leader.tag == "Minion")
         {
             var comp = leader.GetComponent<Minion>();
             comp.follower = follower;

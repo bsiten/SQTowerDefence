@@ -15,7 +15,9 @@ public class AttackPlayer : Entity
     [SerializeField] float fireRate;
     [SerializeField] GameObject bullet;
     [SerializeField] float fireDistance;
-
+    [SerializeField] float smoothMoveTime = 1;
+    [SerializeField] float stopDistance = (float)0.1;
+    Vector3 current_m_vel;
     bool forceMinionsAttack;
     float fireInterval;
 
@@ -51,11 +53,16 @@ public class AttackPlayer : Entity
         Vector3 mousePos = Input.mousePosition;
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
         // m_velocity = (mousePos - screenPos).normalized * speed;
-        m_velocity = -(mousePos - screenPos).normalized * speed;
-        m_velocity.z = m_velocity.y;
-        m_velocity.y = 0.0f;
+        // m_velocity = -(mousePos - screenPos).normalized * speed;
+        // m_velocity.z = m_velocity.y;
+        // m_velocity.y = 0.0f;
+        var aimvel = -(mousePos - screenPos).normalized * speed;
+        aimvel.z = aimvel.y;
+        aimvel.y = 0.0f;
+        // m_velocity = Vector3.SmoothDamp(m_velocity, aimvel, ref current_m_vel, smoothMoveTime);
+        m_velocity = ((mousePos - screenPos).magnitude > stopDistance) ? aimvel : Vector3.zero;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             if (fireInterval < 0)
             {

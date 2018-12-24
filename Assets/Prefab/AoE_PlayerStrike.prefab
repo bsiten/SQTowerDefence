@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buff:
-    name: Damage
+    name: Injured
     intensity: 10
   buffDuration: 0
   duration: 0
