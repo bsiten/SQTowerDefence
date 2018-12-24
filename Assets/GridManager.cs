@@ -7,17 +7,20 @@ public class GridManager : MonoBehaviour
 
     public GameObject Tile;
     public GameObject Stage;
+    public GameObject Grids;
+    public List<GameObject> Tiles;
 
     // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < 4; ++i)
         {
-            int margin = i + 1;
-            if (margin == 4 || margin == 3)
+            /*int margin = i + 1;
+            if (margin == 4 || margin = 3)
             {
                 margin--; 
-            }
+            }*/
+            int margin = i;
             
             for (int j = 0 + margin; j < 10 - margin; ++j)
             {
@@ -25,7 +28,9 @@ public class GridManager : MonoBehaviour
 
                 GameObject instantObject = (GameObject)GameObject.Instantiate(Tile, tilePos, Quaternion.identity);
 
-                instantObject.transform.parent = Stage.transform;
+                Tiles.Add(instantObject);
+
+                instantObject.transform.parent = Grids.transform;
 
             }
         }
