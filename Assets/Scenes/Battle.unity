@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon
       objectReference: {fileID: 0}
+    - target: {fileID: 829362534692805337, guid: 172f0c0963415444a85970bcb88e2d97,
+        type: 3}
+      propertyPath: m_TagString
+      value: Undefined
+      objectReference: {fileID: 0}
     - target: {fileID: 829362534692805333, guid: 172f0c0963415444a85970bcb88e2d97,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -359,7 +364,6 @@ GameObject:
   - component: {fileID: 611947712}
   - component: {fileID: 611947711}
   - component: {fileID: 611947710}
-  - component: {fileID: 611947714}
   - component: {fileID: 611947715}
   m_Layer: 0
   m_Name: DeffencePlayer
@@ -440,24 +444,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &611947714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611947709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2c28f7d64cb495478a5a9b123524bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  maxMovementSpeed: 100
-  status:
-    health: 10
-    maxHealth: 10
-  destroyObjectList: []
 --- !u!54 &611947715
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1119,7 +1105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackPlayer: {fileID: 1470684571}
-  DeffencePlayer: {fileID: 611947714}
+  DeffencePlayer: {fileID: 0}
 --- !u!4 &1535884596
 Transform:
   m_ObjectHideFlags: 0
