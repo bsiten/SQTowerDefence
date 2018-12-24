@@ -58,7 +58,7 @@ public class AttackPlayer : Entity
         // m_velocity = -(mousePos - screenPos).normalized * speed;
         // m_velocity.z = m_velocity.y;
         // m_velocity.y = 0.0f;
-        var aimvel = -(mousePos - screenPos).normalized * speed;
+        var aimvel = (mousePos - screenPos).normalized * speed;
         aimvel.z = aimvel.y;
         aimvel.y = 0.0f;
         // m_velocity = Vector3.SmoothDamp(m_velocity, aimvel, ref current_m_vel, smoothMoveTime);
