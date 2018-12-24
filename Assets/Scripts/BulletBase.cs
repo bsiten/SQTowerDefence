@@ -13,6 +13,7 @@ public class BulletBase : Entity
     [SerializeField] bool isGravity = true;
     [SerializeField] float gravity = 1;
     float m_inpact_time;
+    [SerializeField] List<string> targetTag;
 
 
 
@@ -48,6 +49,13 @@ public class BulletBase : Entity
     void OnTriggerEnter(Collider other)
     {
         var layerName = LayerMask.LayerToName(other.gameObject.layer);
+        foreach (var tag in targetTag)
+        {
+            if (tag == other.gameObject.tag)
+            {
+                Explode();
+            }
+        }
         if (layerName == "Floor")
         {
             Explode();

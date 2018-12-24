@@ -189,7 +189,8 @@ public class Entity : MonoBehaviour
                 Instantiate(destroyObject, transform.position, transform.rotation);
             }
         }
-        Destroy(transform.gameObject);
+        // Destroy(transform.gameObject);
+        transform.gameObject.SetActive(false);
     }
 
     //DetectRange内で最も近いオブジェクトを取得

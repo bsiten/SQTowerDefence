@@ -161,7 +161,8 @@ public class AttackPlayer : Entity
         {
             minion.leader = null;
         }
-        Destroy(transform.gameObject);
+        // Destroy(transform.gameObject);
+        transform.gameObject.SetActive(false);
     }
     void Fire(Vector3 target)
     {
