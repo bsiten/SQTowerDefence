@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletBase : Entity
 {
-    [SerializeField] protected float speed = 10;
+    // [SerializeField] protected float speed = 10;
     [SerializeField] protected float aliveTime = 10;
     [SerializeField] GameObject explodeObject = null;
     [SerializeField] Vector3 inpactPoint = Vector3.zero;
@@ -23,16 +23,27 @@ public class BulletBase : Entity
         m_decreaseHealth = this.status.maxHealth / aliveTime;
         var pos = transform.position;
         m_inpact_time = (new Vector2(pos.x - inpactPoint.x, pos.z - inpactPoint.z)).magnitude / speed;
+        // Debug.Log(transform.name + " is constructed");
     }
 
     public new void Update()
     {
         status.health -= m_decreaseHealth * Time.deltaTime;
         UpdateVelocity();
-        base.Update();
+        // base.Update();
+        StatusCheck();
+        BuffProcess();
+        Move();
     }
 
-
+    protected void StatusCheck()
+    {
+        //死亡処理
+        if (status.health <= 0)
+        {
+            Dead();
+        }
+    }
     // void OnCollisionEnter(Collision other)
     void OnTriggerEnter(Collider other)
     {
@@ -56,7 +67,9 @@ public class BulletBase : Entity
     {
         if (explodeObject != null)
         {
-            Instantiate(explodeObject, transform.position, transform.rotation);
+            var pos = transform.position;
+            // Instantiate(explodeObject, transform.position, transform.rotation);
+            Instantiate(explodeObject, new Vector3(pos.x, 0, pos.z), new Quaternion(1, 0, 0, 0));
             Destroy(transform.gameObject);
         }
     }
@@ -95,5 +108,11 @@ public class BulletBase : Entity
     protected void fallBullet()
     {
         // transform.position.y -= 
+    }
+
+    protected new void Dead()
+    {
+        Explode();
+        base.Dead();
     }
 }

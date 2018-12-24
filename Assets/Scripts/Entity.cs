@@ -5,13 +5,14 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
 
-    [SerializeField] protected float movementSpeed;
+    [SerializeField] protected float speed;
     [SerializeField] protected float maxMovementSpeed;
     [SerializeField] protected Status status;
 
     [SerializeField] protected List<GameObject> destroyObjectList;
 
     protected Vector3 m_velocity;
+    protected float speedCoefficion = 1;
 
     public void Start()
     {
@@ -27,10 +28,6 @@ public class Entity : MonoBehaviour
         StatusCheck();
         BuffProcess();
         Move();
-        foreach (var buff in status.buffList)
-        {
-            // Debug.Log(buff.name);
-        }
     }
 
     //概要：
@@ -73,7 +70,7 @@ public class Entity : MonoBehaviour
     public struct Buff
     {
         public string name;    //id
-        public uint level;     //intensity
+        public float intensity;     //intensity
         // public float duration; //duration time
         // public void ReduceDuration(float time)
         // {
@@ -99,26 +96,69 @@ public class Entity : MonoBehaviour
         {
             m_velocity = m_velocity.normalized * maxMovementSpeed;
         }
-        transform.position += m_velocity * Time.deltaTime;
+        // transform.position += m_velocity * Time.deltaTime;
+        transform.position += m_velocity * speedCoefficion * Time.deltaTime;
+        transform.LookAt(transform.position + m_velocity * Time.deltaTime);
     }
     //概要
     // 各buffごとの処理
     protected void BuffProcess()
     {
+        //init buff properties
+        speedCoefficion = 1;
+        //copy list
+        var nextBuffList = new HashSet<Buff>(status.buffList);
+        var nextBuffDuarationList = new Dictionary<Buff, float>(status.buff_duration_list);
+        //process buffs
         foreach (var buff in status.buffList)
         {
-            if (buff.name == "Damage")
+            if (buff.name == "Damage")//instant damage
             {
-                Debug.Log("Damage buff loaded");
-                status.health -= buff.level;
+                // Debug.Log(transform.gameObject.name + " Damage loaded");
+                status.health -= buff.intensity;
             }
-            status.buff_duration_list[buff] -= Time.deltaTime;
-            if (status.buff_duration_list[buff] < 0)
+            if (buff.name == "Injured")//split damage
             {
-                status.buffList.Remove(buff);
-                status.buff_duration_list.Remove(buff);
+                // Debug.Log("Injured buff loaded");
+                status.health -= buff.intensity * Time.deltaTime;
+            }
+            if (buff.name == "Heal")//instant heal
+            {
+                // Debug.Log("Heal loaded");
+                status.health += buff.intensity;
+            }
+            if (buff.name == "Regeneration")//split heal
+            {
+                // Debug.Log("Regeneration buff loaded");
+                status.health += buff.intensity * Time.deltaTime;
+            }
+            if (buff.name == "Slow")//speed down
+            {
+                if (buff.intensity > 0)
+                {
+                    // Debug.Log("Slow buff loaded");
+                    speedCoefficion /= buff.intensity;
+                }
+            }
+            if (buff.name == "Fast")//speed up
+            {
+                if (buff.intensity > 0)
+                {
+                    // Debug.Log("Fast buff loaded");
+                    speedCoefficion *= buff.intensity;
+                }
+            }
+            //reduce duaration
+            // status.buff_duration_list[buff] -= Time.deltaTime;
+            nextBuffDuarationList[buff] -= Time.deltaTime;
+            if (nextBuffDuarationList[buff] < 0)
+            {
+                nextBuffList.Remove(buff);
+                nextBuffDuarationList.Remove(buff);
             }
         }
+        status.buffList = nextBuffList;
+        status.buff_duration_list = nextBuffDuarationList;
     }
 
     //概要
@@ -129,27 +169,51 @@ public class Entity : MonoBehaviour
         //死亡処理
         if (status.health <= 0)
         {
-            if (destroyObjectList.Count != 0)
-            {
-                foreach (var destroyObject in destroyObjectList)
-                {
-                    Instantiate(destroyObject, transform.position, transform.rotation);
-                }
-            }
-            Destroy(transform.gameObject);
+            Dead();
         }
     }
     //概要
     //  所望の軌道になるように速度を計算
     protected void CalculateVelocity() { m_velocity = Vector3.zero; }
+    //死亡処理
+    protected void Dead()
+    {
+        if (destroyObjectList.Count != 0)
+        {
+            foreach (var destroyObject in destroyObjectList)
+            {
+                Instantiate(destroyObject, transform.position, transform.rotation);
+            }
+        }
+        Destroy(transform.gameObject);
+    }
 
+    //DetectRange内で最も近いオブジェクトを取得
+    protected GameObject NearestObject(DetectRange range)
+    {
+        float min_distance = 0;
+        GameObject nearestObject = null;
+        if (range.detectedObjectList.Count != 0)
+        {
+            foreach (var detectedObject in range.detectedObjectList)
+            {
+                var distance = (transform.position - detectedObject.transform.position).magnitude;
+                if (min_distance == 0 || min_distance > distance)
+                {
+                    min_distance = distance;
+                    nearestObject = detectedObject;
+                }
+            }
+        }
+        return nearestObject;
+    }
     //////////////////////////////////////////////////////////////////////////////
     //private member function
 
     //debug用
-    private void CalcVelocity()
-    {
-        m_velocity = movementSpeed * Vector3.right;
-    }
+    // private void CalcVelocity()
+    // {
+    //     m_velocity = movementSpeed * Vector3.right;
+    // }
 
 }
