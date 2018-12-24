@@ -12,10 +12,12 @@ public class AttackPlayer : Entity
     Dictionary<Minion, Vector3> chargeMinionRandPos;
     public List<Minion> supportMinionCompList = new List<Minion>();
     Dictionary<Minion, Vector3> supportMinionRandPos;
-    [SerializeField] float attackRate;
-    [SerializeField] float power;
+    [SerializeField] float fireRate;
+    [SerializeField] GameObject bullet;
+    [SerializeField] float fireDistance;
 
     bool forceMinionsAttack;
+    float fireInterval;
 
     // Start is called before the first frame update
     public new void Start()
@@ -33,6 +35,7 @@ public class AttackPlayer : Entity
         StatusCheck();
         BuffProcess();
         Move();
+        fireInterval -= Time.deltaTime;
     }
     protected new void StatusCheck()
     {
@@ -52,6 +55,15 @@ public class AttackPlayer : Entity
         m_velocity.z = m_velocity.y;
         m_velocity.y = 0.0f;
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (fireInterval < 0)
+            {
+                var forward = transform.forward;
+                Fire(new Vector3(forward.x, 0, forward.z) - transform.position);
+                fireInterval = fireRate;
+            }
+        }
         if (Input.GetMouseButtonDown(1))
         {
             forceMinionsAttack = (!forceMinionsAttack);
@@ -122,6 +134,13 @@ public class AttackPlayer : Entity
                 minion.follower = null;
             }
         }
+    }
+    void Fire(Vector3 target)
+    {
+        // var attackObject = Instantiate(bullet, transform.position + transform.forward * fireDistance, transform.rotation);
+        var fire_bullet = GameObject.Instantiate(bullet, transform.position + transform.forward * fireDistance, transform.rotation);
+        var comp_bullet = fire_bullet.GetComponent<BulletBase>();
+        comp_bullet.SetInpactPoint(target);
     }
     // void CheckMinionList()
     // {
