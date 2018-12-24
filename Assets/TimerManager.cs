@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class TimerManager : MonoBehaviour
 {
-
     public float TotalTime = 10.0f;
     public bool StartTimer = true;
     public bool TimerEndSitayo = false;
 
-    private Text TimerText;
+    public Text TimerText;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update    
     void Start()
     {
-        this.TimerText = this.GetComponent<Text>();
+        
     }
 
     public void SetTimer(float time)
@@ -55,7 +54,7 @@ public class TimerManager : MonoBehaviour
         }
     }
 
-    bool TimerEnd()
+    public bool TimerEnd()
     {
         if (TimerEndSitayo)
         {

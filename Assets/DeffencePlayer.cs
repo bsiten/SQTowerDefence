@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class DeffencePlayer : Entity
 {
-    public float speed = 0.2f;
     Vector3 vel = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         base.Start();
     }
 

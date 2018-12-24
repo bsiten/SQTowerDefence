@@ -8,6 +8,7 @@ TagManager:
   - AttackPlayer
   - Cannon
   - Tower
+  - DroppableFiaeld
   layers:
   - Default
   - TransparentFX
