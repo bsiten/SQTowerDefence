@@ -9,6 +9,7 @@ public class DeffencePlayer : Entity
     [SerializeField] GameObject bullet;
     [SerializeField] float fireRate;
     [SerializeField] float fireDistance;
+    [SerializeField] Vector3 launchPoint;
     float fireInterval;
 
     public int PlayerID;
@@ -23,7 +24,7 @@ public class DeffencePlayer : Entity
     // Start is called before the first frame update
     public new void Start()
     {
-
+        mainCamera = GameObject.Find("Main Camera");
         base.Start();
     }
 
@@ -34,11 +35,13 @@ public class DeffencePlayer : Entity
         var right = mainCamera.transform.right;
         var forward = new Vector3(-right.z, 0, right.x);
         //keyboard controll
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey("joystick button 4") || Input.GetKey("joystick button 5"))
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey("joystick button 4") || Input.GetKey("joystick button 5"))
         {
             if (fireInterval < 0)
             {
-                Fire(new Vector3(transform.forward.x, 0, transform.forward.z) * fireDistance + transform.position);
+                // Fire(new Vector3(transform.forward.x, 0, transform.forward.z) * fireDistance + transform.position);
+                Fire(transform.forward * fireDistance + transform.position + launchPoint);
+                // Fire((transform.forward + launchPoint) * fireDistance + transform.position);
                 fireInterval = fireRate;
             }
         }
@@ -64,7 +67,7 @@ public class DeffencePlayer : Entity
                 //B button
                 if (!hit.collider.GetComponent<Plane>().IsLocated && NowCannonNum <= CannonLimit)
                 { 
-                    if (Input.GetKey("joystick button 1") || Input.GetKey(KeyCode.R))
+                    if (Input.GetKey("joystick button 1"))
                     {
                         hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon");
                         //GameObject Instant = Instantiate(obj, hit.collider.GetComponent<Plane>().transform.position, Quaternion.identity);
@@ -72,7 +75,7 @@ public class DeffencePlayer : Entity
                         hit.collider.GetComponent<Plane>().LocateCannon();
                         ++NowCannonNum;
                     }
-                    if (Input.GetKey("joystick button 2") || Input.GetKey(KeyCode.T))
+                    if (Input.GetKey("joystick button 2"))
                     {
                         hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon_Beam");
                         //GameObject Instant = Instantiate(obj, hit.collider.GetComponent<Plane>().transform.position, Quaternion.identity);
@@ -80,7 +83,7 @@ public class DeffencePlayer : Entity
                         hit.collider.GetComponent<Plane>().LocateCannon();
                         ++NowCannonNum;
                     }
-                    if (Input.GetKey("joystick button 3") || Input.GetKey(KeyCode.Y))
+                    if (Input.GetKey("joystick button 3"))
                     {
                         hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon_SlowRange");
                         //GameObject Instant = Instantiate(obj, hit.collider.GetComponent<Plane>().transform.position, Quaternion.identity);
@@ -127,7 +130,7 @@ public class DeffencePlayer : Entity
     void Fire(Vector3 target)
     {
         // var attackObject = Instantiate(bullet, transform.position + transform.forward * fireDistance, transform.rotation);
-        var fire_bullet = GameObject.Instantiate(bullet, transform.position + transform.forward, transform.rotation);
+        var fire_bullet = GameObject.Instantiate(bullet, transform.position + launchPoint + transform.forward, transform.rotation);
         var comp_bullet = fire_bullet.GetComponent<BulletBase>();
         comp_bullet.SetInpactPoint(target);
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1276834615383571290}
   m_Layer: 11
   m_Name: Tower
-  m_TagString: Cannon
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +83,7 @@ MonoBehaviour:
     health: 0
     maxHealth: 200
   destroyObjectList: []
+  nonRegenelation: 0
 --- !u!1 &1889900533595190104
 GameObject:
   m_ObjectHideFlags: 0

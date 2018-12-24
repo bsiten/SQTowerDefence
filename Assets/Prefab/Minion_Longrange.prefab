@@ -124,6 +124,7 @@ MonoBehaviour:
   detectTags:
   - Tower
   - Cannon
+  - DefencePlayer
   rangeColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2421124287724829318
 GameObject:
@@ -172,7 +173,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Size: {x: 0.5, y: 10, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2421124287724829319
 MonoBehaviour:
@@ -192,6 +193,7 @@ MonoBehaviour:
     health: 0
     maxHealth: 100
   destroyObjectList: []
+  nonRegenelation: 0
   leader: {fileID: 0}
   follower: {fileID: 0}
   bullet: {fileID: 6173958677022073409, guid: fbf76b6f9a6eecb48892b5b5b431b533, type: 3}
@@ -199,7 +201,8 @@ MonoBehaviour:
   targetStayDistance: 1
   isCharge: 0
   fireRate: 2
-  offset: {x: 1, y: 0, z: 0}
+  followOffset: {x: 1, y: 0, z: 0}
+  launchPoint: {x: 0, y: 1, z: 0}
 --- !u!54 &1356237055940957218
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -242,7 +245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2421124288016838469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 2421124287724829317}
@@ -273,7 +276,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cbcdcaa2703fe904ab1882be67f7e6f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

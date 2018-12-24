@@ -54,11 +54,12 @@ MonoBehaviour:
     health: 0
     maxHealth: 50
   destroyObjectList: []
+  nonRegenelation: 0
   maxRotateVelocity: 200
-  fireRate: 2
+  fireRate: 0.7
   fireQuantity: 1
   m_barrel: {fileID: 9211040444699021399}
-  bullet: {fileID: 2727066950138619992, guid: 37737cb9829fd314ea99c4f83d66b635, type: 3}
+  bullet: {fileID: 5500267767958624810, guid: 52d4f7109b8ba5240b6896659392eb9c, type: 3}
 --- !u!54 &4865169444316624137
 Rigidbody:
   m_ObjectHideFlags: 0
