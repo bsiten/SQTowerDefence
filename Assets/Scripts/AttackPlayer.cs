@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackPlayer : Entity
 {
     // public float speed = 0.2f;
+    public int PlayerID;
 
     public List<GameObject> chargeMinionList;
     public List<GameObject> supportMinionList;
