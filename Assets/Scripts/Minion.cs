@@ -11,8 +11,9 @@ public class Minion : Entity
     [SerializeField] float followerStayDistance;
     [SerializeField] float targetStayDistance;
     // [SerializeField] float speed = 10;
-    [SerializeField] bool isCharge = true;//charge or not
+    [SerializeField] public bool isCharge = true;//charge or not
     [SerializeField] float fireRate;
+    [SerializeField] Vector3 offset;
 
     DetectRange targetRange;
     DetectRange attackRange;
@@ -79,7 +80,15 @@ public class Minion : Entity
         var xzTarget = new Vector3(target.x, transform.position.y, target.z) - transform.position;
         if (xzTarget.magnitude > followerStayDistance)
         {
-            m_velocity = xzTarget.normalized * speed;
+            if (isCharge)
+            {
+                m_velocity = xzTarget.normalized * speed;
+            }
+            else
+            {
+                // m_velocity = (xzTarget + (transform.rotation * offset)).normalized * speed;
+                m_velocity = (xzTarget + offset).normalized * speed;
+            }
         }
         else
         {
@@ -125,20 +134,28 @@ public class Minion : Entity
     protected new void Dead()
     {
         // Debug.Log("Minion dead");
-        if (follower.tag == "Minion")
+        if (follower != null && follower.tag == "Minion")
         {
             var comp = follower.GetComponent<Minion>();
             comp.leader = leader;
         }
-        if (leader.tag == "Minion")
+        if (leader.tag != null && leader.tag == "Minion")
         {
             var comp = leader.GetComponent<Minion>();
             comp.follower = follower;
         }
         var player = GameObject.FindWithTag("AttackPlayer");
         var playercomp = player.GetComponent<AttackPlayer>();
-        playercomp.minionList.Remove(transform.gameObject);
-        playercomp.minionCompList.Remove(this);
+        if (isCharge)
+        {
+            playercomp.chargeMinionList.Remove(transform.gameObject);
+            playercomp.chargeMinionCompList.Remove(this);
+        }
+        else
+        {
+            playercomp.supportMinionList.Remove(transform.gameObject);
+            playercomp.supportMinionCompList.Remove(this);
+        }
         base.Dead();
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Cannon
   - Tower
   - DefencePlayer
+  - SupportMinion
   layers:
   - Default
   - TransparentFX

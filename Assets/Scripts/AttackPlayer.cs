@@ -6,8 +6,12 @@ public class AttackPlayer : Entity
 {
     // public float speed = 0.2f;
 
-    public List<GameObject> minionList;
-    public List<Minion> minionCompList = new List<Minion>();
+    public List<GameObject> chargeMinionList;
+    public List<GameObject> supportMinionList;
+    public List<Minion> chargeMinionCompList = new List<Minion>();
+    Dictionary<Minion, Vector3> chargeMinionRandPos;
+    public List<Minion> supportMinionCompList = new List<Minion>();
+    Dictionary<Minion, Vector3> supportMinionRandPos;
     [SerializeField] float attackRate;
     [SerializeField] float power;
 
@@ -51,7 +55,7 @@ public class AttackPlayer : Entity
         if (Input.GetMouseButtonDown(1))
         {
             forceMinionsAttack = (!forceMinionsAttack);
-            foreach (var minion in minionCompList)
+            foreach (var minion in chargeMinionCompList)
             {
                 minion.ToggleAttacking(forceMinionsAttack);
             }
@@ -59,11 +63,24 @@ public class AttackPlayer : Entity
     }
     void initMinions()
     {
-        for (int i = 0; i < minionList.Count; i++)
+        GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");
+        foreach (var minion in minions)
         {
-            // Debug.Log(i.ToString() + "th debug");
-            var minion = minionList[i].GetComponent<Minion>();
-            minionCompList.Add(minion);
+            if (minion.GetComponent<Minion>().isCharge)
+            {
+                chargeMinionList.Add(minion);
+                chargeMinionCompList.Add(minion.GetComponent<Minion>());
+            }
+            else
+            {
+                supportMinionList.Add(minion);
+                supportMinionCompList.Add(minion.GetComponent<Minion>());
+            }
+        }
+        //set following
+        for (int i = 0; i < chargeMinionList.Count; i++)
+        {
+            var minion = chargeMinionList[i].GetComponent<Minion>();
             if (i == 0)
             {
                 // Debug.Log(i.ToString() + "th debug");
@@ -72,11 +89,33 @@ public class AttackPlayer : Entity
             }
             else
             {
-                minion.leader = minionList[i - 1];
+                minion.leader = chargeMinionList[i - 1];
             }
-            if (i != minionList.Count - 1)
+            if (i != chargeMinionList.Count - 1)
             {
-                minion.follower = minionList[i + 1];
+                minion.follower = chargeMinionList[i + 1];
+            }
+            else
+            {
+                minion.follower = null;
+            }
+        }
+        for (int i = 0; i < supportMinionList.Count; i++)
+        {
+            var minion = supportMinionList[i].GetComponent<Minion>();
+            if (i == 0)
+            {
+                // Debug.Log(i.ToString() + "th debug");
+
+                minion.leader = transform.gameObject;
+            }
+            else
+            {
+                minion.leader = supportMinionList[i - 1];
+            }
+            if (i != supportMinionList.Count - 1)
+            {
+                minion.follower = supportMinionList[i + 1];
             }
             else
             {

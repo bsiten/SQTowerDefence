@@ -199,6 +199,7 @@ MonoBehaviour:
   targetStayDistance: 1
   isCharge: 1
   fireRate: 0
+  offset: {x: 0, y: 0, z: 0}
 --- !u!54 &1828254456
 Rigidbody:
   m_ObjectHideFlags: 0
