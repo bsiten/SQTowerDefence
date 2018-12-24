@@ -98,12 +98,16 @@ MonoBehaviour:
     health: 100
     maxHealth: 100
   destroyObjectList: []
+  nonRegenelation: 0
   aliveTime: 10
   explodeObject: {fileID: 6802310710049658652, guid: 452ab102cff55a24a99d2c7875abb7da,
     type: 3}
   inpactPoint: {x: 0, y: 0, z: 0}
   isGravity: 0
   gravity: 1
+  targetTag:
+  - Minion
+  - AtackPlayer
 --- !u!135 &5500267767958624852
 SphereCollider:
   m_ObjectHideFlags: 0

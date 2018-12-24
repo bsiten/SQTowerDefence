@@ -58,12 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959fc804021fb8f44aea701a25fbf48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   detectTags:
   - AttackPlayer
   - Minion
+  rangeColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7093263773675737283
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +73,7 @@ GameObject:
   - component: {fileID: 7093263773675737286}
   - component: {fileID: 6082665068593442610}
   m_Layer: 12
-  m_Name: Explosion
+  m_Name: AoE_Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,12 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buff:
     name: Damage
-    intensity: 10
+    intensity: 17
   buffDuration: 0
   duration: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &7093263774161000808
 GameObject:
   m_ObjectHideFlags: 0

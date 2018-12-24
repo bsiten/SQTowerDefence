@@ -124,6 +124,7 @@ MonoBehaviour:
   detectTags:
   - Tower
   - Cannon
+  - DefencePlayer
   rangeColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2421124287724829318
 GameObject:
@@ -192,6 +193,7 @@ MonoBehaviour:
     health: 0
     maxHealth: 100
   destroyObjectList: []
+  nonRegenelation: 0
   leader: {fileID: 0}
   follower: {fileID: 0}
   bullet: {fileID: 6173958677022073409, guid: fbf76b6f9a6eecb48892b5b5b431b533, type: 3}

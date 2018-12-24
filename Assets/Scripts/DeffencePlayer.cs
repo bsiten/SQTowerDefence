@@ -23,7 +23,7 @@ public class DeffencePlayer : Entity
     // Start is called before the first frame update
     new void Start()
     {
-
+        mainCamera = GameObject.Find("Main Camera");
         base.Start();
     }
 
@@ -34,7 +34,7 @@ public class DeffencePlayer : Entity
         var right = mainCamera.transform.right;
         var forward = new Vector3(-right.z, 0, right.x);
         //keyboard controll
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey("joystick button 4") || Input.GetKey("joystick button 5"))
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey("joystick button 4") || Input.GetKey("joystick button 5"))
         {
             if (fireInterval < 0)
             {
@@ -63,7 +63,7 @@ public class DeffencePlayer : Entity
 
                 //B button
                 if (!hit.collider.GetComponent<Plane>().IsLocated && NowCannonNum <= CannonLimit)
-                { 
+                {
                     if (Input.GetKey("joystick button 1"))
                     {
                         hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon");

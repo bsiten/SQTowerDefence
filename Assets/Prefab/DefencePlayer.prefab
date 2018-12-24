@@ -89,7 +89,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.2, y: 1.2, z: 1.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4095622909462207182
 GameObject:
@@ -166,13 +166,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c28f7d64cb495478a5a9b123524bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  maxMovementSpeed: 10
+  speed: 8
+  maxMovementSpeed: 8
   status:
     health: 0
-    maxHealth: 100
+    maxHealth: 30
   destroyObjectList: []
+  nonRegenelation: 0
   mainCamera: {fileID: 0}
   bullet: {fileID: 8941144034571537970, guid: 00134d95fa321fa48aec08373296f7e5, type: 3}
-  fireRate: 0
+  fireRate: 0.05
   fireDistance: 20
+  PlayerID: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  Cannons: []
+  CannonLimit: 8
+  NowCannonNum: 0

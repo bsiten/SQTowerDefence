@@ -121,9 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectTags:
-  - Tower
-  - Cannon
-  - DefencePlayer
+  - AttackPlayer
+  - Minion
   rangeColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2888166611059450782
 GameObject:
@@ -187,10 +186,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  maxMovementSpeed: 100
+  maxMovementSpeed: 5
   status:
     health: 0
-    maxHealth: 100
+    maxHealth: 300
   destroyObjectList: []
   nonRegenelation: 1
   leader: {fileID: 0}
@@ -200,7 +199,7 @@ MonoBehaviour:
   targetStayDistance: 1
   isCharge: 1
   fireRate: 1
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 1, y: 0, z: 0}
 --- !u!54 &1972306053314514234
 Rigidbody:
   m_ObjectHideFlags: 0

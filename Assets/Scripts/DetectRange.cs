@@ -28,7 +28,7 @@ public class DetectRange : MonoBehaviour
     {
         // var layerName = LayerMask.LayerToName(other.gameObject.layer);
         // if (layerMask != null && layerMask == other.gameObject.layer)
-        if (detectTags.Contains(other.gameObject.tag))
+        if (detectTags.Contains(other.gameObject.tag) && other.gameObject.activeInHierarchy)
         {
             // Debug.Log(other.gameObject.name + " Enter " + transform.name);
             detectedObjectList.Add(other.gameObject);
@@ -40,7 +40,10 @@ public class DetectRange : MonoBehaviour
         if (detectTags.Contains(other.gameObject.tag))
         {
             // Debug.Log(other.gameObject.name + " Exit " + transform.name);
-            detectedObjectList.Remove(other.gameObject);
+            if (detectedObjectList.Contains(other.gameObject))
+            {
+                detectedObjectList.Remove(other.gameObject);
+            }
         }
 
     }

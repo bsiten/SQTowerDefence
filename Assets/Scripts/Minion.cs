@@ -66,7 +66,8 @@ public class Minion : Entity
             if (attackObject != null && bullet != null && fireInterval < 0)
             {
                 var target = attackObject.transform.position;
-                Fire(new Vector3(target.x, 0, target.z));
+                // Fire(new Vector3(target.x, 0, target.z));
+                Fire(target);
                 fireInterval = fireRate;
             }
         }

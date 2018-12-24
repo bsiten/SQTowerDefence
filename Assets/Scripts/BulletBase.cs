@@ -37,7 +37,7 @@ public class BulletBase : Entity
         Move();
     }
 
-    protected void StatusCheck()
+    protected new void StatusCheck()
     {
         //死亡処理
         if (status.health <= 0)

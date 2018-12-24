@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8941144034571537997}
   - component: {fileID: 8941144034571537996}
   - component: {fileID: 8941144034571537992}
-  - component: {fileID: 2037558964}
+  - component: {fileID: 2591895911160603372}
   m_Layer: 13
   m_Name: Bullet_PlayerBeam
   m_TagString: Untagged
@@ -109,7 +109,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2037558964
+--- !u!114 &2591895911160603372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8941144034571537970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4004f6b7233b0143a66620345341c25, type: 3}
+  m_Script: {fileID: 11500000, guid: 0087d142bb5951a4b9df3479496500b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
@@ -127,12 +127,13 @@ MonoBehaviour:
     health: 0
     maxHealth: 100
   destroyObjectList: []
+  nonRegenelation: 0
   aliveTime: 10
   explodeObject: {fileID: 589653465102316, guid: 374458b691c35794da6d753312365144,
     type: 3}
   inpactPoint: {x: 0, y: 0, z: 0}
   isGravity: 1
   gravity: 1
-  targetTags:
+  targetTag:
   - Minion
   - AttackPlayer

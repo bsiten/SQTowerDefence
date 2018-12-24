@@ -202,11 +202,14 @@ public class Entity : MonoBehaviour
         {
             foreach (var detectedObject in range.detectedObjectList)
             {
-                var distance = (transform.position - detectedObject.transform.position).magnitude;
-                if (min_distance == 0 || min_distance > distance)
+                if (detectedObject.activeInHierarchy)
                 {
-                    min_distance = distance;
-                    nearestObject = detectedObject;
+                    var distance = (transform.position - detectedObject.transform.position).magnitude;
+                    if (min_distance == 0 || min_distance > distance)
+                    {
+                        min_distance = distance;
+                        nearestObject = detectedObject;
+                    }
                 }
             }
         }
