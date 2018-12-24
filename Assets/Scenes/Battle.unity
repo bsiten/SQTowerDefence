@@ -443,10 +443,12 @@ MonoBehaviour:
     health: 0
     maxHealth: 100
   destroyObjectList: []
+  nonRegenelation: 0
   mainCamera: {fileID: 1051378279}
   bullet: {fileID: 8941144034571537970, guid: 00134d95fa321fa48aec08373296f7e5, type: 3}
   fireRate: 0
   fireDistance: 20
+  PlayerID: 0
   mask:
     serializedVersion: 2
     m_Bits: 16384
@@ -627,6 +629,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumPlayerWin: 
+  Timer: {fileID: 753313286}
+  BattleTime: 120
+  PreparePhase: {fileID: 1548469222}
+  AttackPlayer: {fileID: 5369500539231149204}
+  DefencePlayer: {fileID: 710775574}
+  Tower: {fileID: 1276834615383571291, guid: 7af9fb67d659d80449eb139eb737df88, type: 3}
+  PlayerOrder: 01000000000000000000000001000000010000000000000000000000010000000100000000000000
+  Round: 0
+  DeffenceStartPosition: {x: 0, y: 0, z: 0}
+  AttackStartPosition: {x: 0, y: 0, z: 0}
+  CrystalPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &846208604
 Transform:
   m_ObjectHideFlags: 0
@@ -1136,6 +1149,8 @@ MonoBehaviour:
     health: 10
     maxHealth: 10
   destroyObjectList: []
+  nonRegenelation: 0
+  PlayerID: 0
   chargeMinionList: []
   supportMinionList: []
   chargeMinionCompList: []
@@ -1240,6 +1255,7 @@ MonoBehaviour:
   Timer: {fileID: 753313286}
   panel: {fileID: 1738810323}
   MiniMana: {fileID: 1810703094}
+  EndOfPhase: 0
   Minions:
   - {fileID: 0}
   - {fileID: 0}
@@ -1664,3 +1680,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b989b22422097848afb29c57cfeaac2, type: 3}
+--- !u!114 &5369500539231149204 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5369500539079023763, guid: 2b989b22422097848afb29c57cfeaac2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5369500539231149203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1995d279248f4a14fb1593f216df5214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
