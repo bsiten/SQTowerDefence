@@ -18,6 +18,7 @@ public class Minion : Entity
     DetectRange targetRange;
     DetectRange attackRange;
     GameObject targetWhenLeaderMissing;
+
     float fireInterval;
 
     bool isAtacking = false;

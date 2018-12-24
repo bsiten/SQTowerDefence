@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackPlayer : Entity
 {
     // public float speed = 0.2f;
+    public int PlayerID;
 
     public List<GameObject> chargeMinionList;
     public List<GameObject> supportMinionList;
@@ -34,13 +35,14 @@ public class AttackPlayer : Entity
         GetPlayerInput();
         // CheckMinionList();
         // base.Update();
-        StatusCheck();
         BuffProcess();
+        StatusCheck();
         Move();
         fireInterval -= Time.deltaTime;
     }
     protected new void StatusCheck()
     {
+        base.StatusCheck();
         //死亡処理
         if (status.health <= 0)
         {
@@ -141,6 +143,27 @@ public class AttackPlayer : Entity
                 minion.follower = null;
             }
         }
+    }
+
+    protected new void Dead()
+    {
+        if (destroyObjectList.Count != 0)
+        {
+            foreach (var destroyObject in destroyObjectList)
+            {
+                Instantiate(destroyObject, transform.position, transform.rotation);
+            }
+        }
+        foreach (var minion in chargeMinionCompList)
+        {
+            minion.leader = null;
+        }
+        foreach (var minion in supportMinionCompList)
+        {
+            minion.leader = null;
+        }
+        // Destroy(transform.gameObject);
+        transform.gameObject.SetActive(false);
     }
     void Fire(Vector3 target)
     {

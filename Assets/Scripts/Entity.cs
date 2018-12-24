@@ -10,7 +10,7 @@ public class Entity : MonoBehaviour
     [SerializeField] public Status status;
 
     [SerializeField] protected List<GameObject> destroyObjectList;
-
+    [SerializeField] public bool nonRegenelation = false;
     protected Vector3 m_velocity;
     protected float speedCoefficion = 1;
 
@@ -25,8 +25,8 @@ public class Entity : MonoBehaviour
 
     public void Update()
     {
-        StatusCheck();
         BuffProcess();
+        StatusCheck();
         Move();
     }
 
@@ -127,7 +127,7 @@ public class Entity : MonoBehaviour
                 // Debug.Log("Heal loaded");
                 status.health += buff.intensity;
             }
-            if (buff.name == "Regeneration")//split heal
+            if (buff.name == "Regeneration" && !nonRegenelation)//split heal
             {
                 // Debug.Log("Regeneration buff loaded");
                 status.health += buff.intensity * Time.deltaTime;
@@ -166,6 +166,10 @@ public class Entity : MonoBehaviour
     //死亡などを実行する．
     protected void StatusCheck()
     {
+        if (status.health > status.maxHealth)
+        {
+            status.health = status.maxHealth;
+        }
         //死亡処理
         if (status.health <= 0)
         {
@@ -185,7 +189,8 @@ public class Entity : MonoBehaviour
                 Instantiate(destroyObject, transform.position, transform.rotation);
             }
         }
-        Destroy(transform.gameObject);
+        // Destroy(transform.gameObject);
+        transform.gameObject.SetActive(false);
     }
 
     //DetectRange内で最も近いオブジェクトを取得
