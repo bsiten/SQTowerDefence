@@ -179,6 +179,10 @@ public class Entity : MonoBehaviour
         }
         status.buffList = nextBuffList;
         status.buff_duration_list = nextBuffDuarationList;
+        if (status.health > status.maxHealth)
+        {
+            status.health = status.maxHealth;
+        }
     }
 
     //概要

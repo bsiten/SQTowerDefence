@@ -136,6 +136,10 @@ public class Minion : Entity
 
     protected new void StatusCheck()
     {
+        if (status.health > status.maxHealth)
+        {
+            status.health = status.maxHealth;
+        }
         //死亡処理
         if (status.health <= 0)
         {
