@@ -12,7 +12,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     void Awake()
     {
-        canvasTran = transform.parent.parent;
+        canvasTran = transform.parent;
     }
 
     public void OnBeginDrag(PointerEventData pointerEventData)

@@ -13,17 +13,19 @@ public class MinionsManager : MonoBehaviour
     public Transform PanelTrans;
     public GameObject PrefabMinion;
     public GameObject PrefabMinion_Longrange;
+    public GameObject PrefabMinion_Cure;
 
-    public int Margin = 120;
+    public int Margin = 160;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = -1; i < 4; ++i)
+        for (int i = -2; i < 3; ++i)
         {
             Vector3 pos = PanelTrans.position;
             pos.y = 800;
             pos.x += i * Margin;
+            
             Image Instant = Instantiate(MinionImage, pos, Quaternion.identity);
             Instant.transform.parent = PanelTrans;
             MinionImages.Add(Instant);
@@ -58,7 +60,7 @@ public class MinionsManager : MonoBehaviour
             }
             else if (id == 3)
             {
-
+                Minions[i] = PrefabMinion_Cure;
             }
 
         }

@@ -75,19 +75,19 @@ public class GameMaster : MonoBehaviour
         
         if (AttackPlayer.GetComponent<AttackPlayer>().PlayerID == ID_PLAYER1)
         {
-            Player1Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(800, 400);
+            Player1Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(880, 290);
         } else
         {
-            Player2Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(800, 400);
+            Player2Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(880, 290);
         }
 
         if (DefencePlayer.GetComponent<DeffencePlayer>().PlayerID == ID_PLAYER1)
         {
-            Player1Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(-600, 400);
+            Player1Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(-650, 290);
         }
         else
         {
-            Player2Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(-600, 400);
+            Player2Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(-650, 290);
         }
 
         if (!PrepareFlag && !BattleFlag && !RoundChangeInterval)
@@ -141,6 +141,17 @@ public class GameMaster : MonoBehaviour
 
         if (RoundChangeInterval && Timer.TimerEnd()) 
         {
+            GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");
+            for (int i = 0; i < minions.Length; ++i)
+            {
+                Destroy(minions[i].GetComponent<Entity>().transform.gameObject);
+            }
+
+            GameObject[] cannons = GameObject.FindGameObjectsWithTag("Cannon");
+            for (int i = 0; i < cannons.Length; ++i)
+            {
+                Destroy(cannons[i].GetComponent<Entity>().transform.gameObject);
+            }
             DefencePlayer.GetComponent<Entity>().UnStop();
             RoundChangeInterval = false;
         }
