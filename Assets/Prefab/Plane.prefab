@@ -105,3 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e256463c3517342a6872082d89a205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsColorChange: 0
+  defColor: {r: 1, g: 1, b: 1, a: 0}
+  IsLocated: 0
+  NowLocate: 0
+  Delay: 2
+  LocateObject: {fileID: 0}

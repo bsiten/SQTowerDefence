@@ -84,6 +84,8 @@ MonoBehaviour:
     maxHealth: 200
   destroyObjectList: []
   nonRegenelation: 0
+  StopFlag: 0
+  PrevPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1889900533595190104
 GameObject:
   m_ObjectHideFlags: 0
