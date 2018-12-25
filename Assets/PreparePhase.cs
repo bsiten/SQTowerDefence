@@ -12,6 +12,7 @@ public class PreparePhase : MonoBehaviour
 
     public GameObject panel;
     public MinionsManager MiniMana;
+    private MinionsManager TempMinimana;
 
     public bool EndOfPhase = false;
 
@@ -20,7 +21,7 @@ public class PreparePhase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        TempMinimana = MiniMana;
     }
 
     public void StartPreparePhase()
@@ -30,6 +31,7 @@ public class PreparePhase : MonoBehaviour
             return;
         }
         Minions = new List<GameObject>(5);
+        MiniMana = TempMinimana;
         PrepareNow = true;
         panel.SetActive(true);
         Timer.SetTimer(LimitTime);
@@ -53,6 +55,15 @@ public class PreparePhase : MonoBehaviour
         panel.SetActive(false);
 
         EndOfPhase = true;
+        
+    }
+
+    public void ResetStatus()
+    {
+        MiniMana = null;
+        Minions = null;
+        PrepareNow = false;
+        EndOfPhase = false;
     }
 
 }

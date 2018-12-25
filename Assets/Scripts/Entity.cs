@@ -14,6 +14,9 @@ public class Entity : MonoBehaviour
     protected Vector3 m_velocity;
     protected float speedCoefficion = 1;
 
+    public bool StopFlag = false;
+    public Vector3 PrevPosition;
+
     public void Start()
     {
         status.Reset();
@@ -25,9 +28,12 @@ public class Entity : MonoBehaviour
 
     public void Update()
     {
-        BuffProcess();
-        StatusCheck();
-        Move();
+        if (!StopFlag)
+        {
+            BuffProcess();
+            StatusCheck();
+            Move();
+        }
     }
 
     //概要：
@@ -197,6 +203,25 @@ public class Entity : MonoBehaviour
         transform.gameObject.SetActive(false);
     }
 
+    public void UnStop()
+    {
+        if (StopFlag)
+        {
+            StopFlag = false;
+            transform.position = PrevPosition;
+        }
+    }
+
+    public void Stop()
+    {
+        if (!StopFlag)
+        {
+            StopFlag = true;
+            PrevPosition = transform.position;
+            transform.position -= Vector3.up * 1000.0f;
+        }
+    }
+
     //DetectRange内で最も近いオブジェクトを取得
     protected GameObject NearestObject(DetectRange range)
     {
@@ -206,6 +231,7 @@ public class Entity : MonoBehaviour
         {
             foreach (var detectedObject in range.detectedObjectList)
             {
+                if (detectedObject == null) continue;
                 if (detectedObject.activeInHierarchy)
                 {
                     var distance = (transform.position - detectedObject.transform.position).magnitude;

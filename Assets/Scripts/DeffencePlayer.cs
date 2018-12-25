@@ -16,13 +16,11 @@ public class DeffencePlayer : Entity
 
     public LayerMask mask;
 
-    public List<GameObject> Cannons;
-
     public int CannonLimit = 8;
     public int NowCannonNum = 0;
 
     // Start is called before the first frame update
-    new void Start()
+    public new void Start()
     {
         mainCamera = GameObject.Find("Main Camera");
         base.Start();
@@ -66,8 +64,8 @@ public class DeffencePlayer : Entity
 
                 //B button
                 if (!hit.collider.GetComponent<Plane>().IsLocated && NowCannonNum <= CannonLimit)
-                {
-                    if (Input.GetKey("joystick button 1"))
+                { 
+                    if (Input.GetKey("joystick button 1") || Input.GetKey(KeyCode.R))
                     {
                         hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon");
                         //GameObject Instant = Instantiate(obj, hit.collider.GetComponent<Plane>().transform.position, Quaternion.identity);
@@ -75,7 +73,7 @@ public class DeffencePlayer : Entity
                         hit.collider.GetComponent<Plane>().LocateCannon();
                         ++NowCannonNum;
                     }
-                    if (Input.GetKey("joystick button 2"))
+                    if (Input.GetKey("joystick button 2") || Input.GetKey(KeyCode.T))
                     {
                         hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon_Beam");
                         //GameObject Instant = Instantiate(obj, hit.collider.GetComponent<Plane>().transform.position, Quaternion.identity);
@@ -83,7 +81,7 @@ public class DeffencePlayer : Entity
                         hit.collider.GetComponent<Plane>().LocateCannon();
                         ++NowCannonNum;
                     }
-                    if (Input.GetKey("joystick button 3"))
+                    if (Input.GetKey("joystick button 3") || Input.GetKey(KeyCode.Y))
                     {
                         hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon_SlowRange");
                         //GameObject Instant = Instantiate(obj, hit.collider.GetComponent<Plane>().transform.position, Quaternion.identity);
