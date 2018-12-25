@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour
     public bool StopFlag = false;
     public Vector3 PrevPosition;
 
-    //private Canvas canvas;
+    //public GameObject canvas;
 
     //private HPStatusUI hpStatusUI;
 
@@ -26,11 +26,7 @@ public class Entity : MonoBehaviour
     {
         status.Reset();
 
-        //canvas = (Canvas)Resources.Load("HPCanvas");
-
-        //canvas.transform.parent = this.transform;
-
-        //hpStatusUI = GetComponentInChildren<HPStatusUI>();
+        
         // foreach (var destroyObject in destroyObjectList)
         // {
         //     Instantiate(destroyObject, transform.position + Vector3.up, transform.rotation);
@@ -41,9 +37,9 @@ public class Entity : MonoBehaviour
     {
         if (!StopFlag)
         {
-           // if (hpStatusUI != null) {
-              //  hpStatusUI.UpdateHPValue();
-            //}
+            /*if (hpStatusUI != null) {
+                hpStatusUI.UpdateHPValue();
+            }*/
             BuffProcess();
             StatusCheck();
             Move();
@@ -197,10 +193,10 @@ public class Entity : MonoBehaviour
         //死亡処理
         if (status.health <= 0)
         {
-            //if (hpStatusUI != null)
-            //{
-              //  hpStatusUI.SetDisable();
-            //}
+            /*if (hpStatusUI != null)
+            {
+                hpStatusUI.SetDisable();
+            }*/
             Dead();
         }
     }
