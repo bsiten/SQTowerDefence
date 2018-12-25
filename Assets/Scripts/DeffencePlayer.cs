@@ -46,7 +46,8 @@ public class DeffencePlayer : Entity
 
         // 1.
         // Rayの作成
-        Ray ray = new Ray(transform.position + transform.up * 0.5f, transform.forward + new Vector3(0, -0.6f, 0));
+        // Ray ray = new Ray(transform.position + transform.up * 0.5f, transform.forward + new Vector3(0, -0.6f, 0));
+        Ray ray = new Ray(transform.position + transform.up * 0.7f, transform.forward + new Vector3(0, -0.6f, 0));
 
         // 2.		
         // Rayが衝突したコライダーの情報を得る
