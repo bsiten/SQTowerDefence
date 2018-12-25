@@ -110,8 +110,12 @@ public class GameMaster : MonoBehaviour
 
         if (BattleFlag && CheckVictory())
         {
-            Timer.Reset();
-            Timer.TimerEnd();
+
+            if (!Timer.TimerEnd())
+            {
+                Timer.Reset();
+                Timer.TimerEnd();
+            }
 
             GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");
 
@@ -129,6 +133,8 @@ public class GameMaster : MonoBehaviour
             Round++;
             AttackPlayer.GetComponent<Entity>().UnStop();
             DefencePlayer.GetComponent<Entity>().UnStop();
+            Tower.GetComponent<Entity>().UnStop();
+            Tower.GetComponent<Entity>().status.Reset();
             AttackPlayer.transform.position = AttackStartPosition;
             DefencePlayer.transform.position = DeffenceStartPosition;
             AttackPlayer.GetComponent<Entity>().status.Reset();
