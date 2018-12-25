@@ -13,7 +13,7 @@ public class HPStatusUI : MonoBehaviour
 
     void Start()
     {
-        //　自身のルートに取り付けている敵のステータス取得
+        //　自身のルートに取り付けているステータス取得
         status = transform.root.GetComponent<Entity.Status>();
         //　HP用Sliderを子要素から取得
         hpSlider = transform.Find("HPBar").GetComponent<Slider>();
@@ -27,6 +27,7 @@ public class HPStatusUI : MonoBehaviour
         //　カメラと同じ向きに設定
         transform.rotation = Camera.main.transform.rotation;
     }
+
     //　死んだらHPUIを非表示にする
     public void SetDisable()
     {
