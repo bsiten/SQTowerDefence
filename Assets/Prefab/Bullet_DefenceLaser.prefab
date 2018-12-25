@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5500267767958624848}
   - component: {fileID: 4847428752862553019}
   m_Layer: 13
-  m_Name: Bullet_DefenceBeam
+  m_Name: Bullet_DefenceLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   destroyObjectList: []
   nonRegenelation: 0
   aliveTime: 10
-  explodeObject: {fileID: 6802310710049658652, guid: 452ab102cff55a24a99d2c7875abb7da,
+  explodeObject: {fileID: 2005564311471089204, guid: 4184991125c52b64cb2b04e3b4fc8fbf,
     type: 3}
   inpactPoint: {x: 0, y: 0, z: 0}
   isGravity: 0
