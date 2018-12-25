@@ -177,7 +177,8 @@ public class AttackPlayer : Entity
             minion.leader = null;
         }
         // Destroy(transform.gameObject);
-        transform.gameObject.SetActive(false);
+        //transform.gameObject.SetActive(false);
+        Stop();
     }
 
     //target方向に攻撃を行う

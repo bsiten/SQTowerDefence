@@ -126,6 +126,8 @@ public class GameMaster : MonoBehaviour
             }
 
             Round++;
+            AttackPlayer.GetComponent<Entity>().UnStop();
+            DefencePlayer.GetComponent<Entity>().UnStop();
             AttackPlayer.transform.position = AttackStartPosition;
             DefencePlayer.transform.position = DeffenceStartPosition;
             AttackPlayer.GetComponent<Entity>().status.Reset();
