@@ -31,7 +31,7 @@ public class GameMaster : MonoBehaviour
     public bool PrepareFlag = false;
     public bool BattleFlag = false;
     public bool RoundChangeInterval = false;
-   
+
     public float RoundChangeIntervalTime = 10.0f;
 
     public Text Player1Text;
@@ -59,7 +59,8 @@ public class GameMaster : MonoBehaviour
         if (!CheckGameOver())
         {
             MainGameLoop();
-        } else
+        }
+        else
         {
             SceneManager.LoadScene("Result");
         }
@@ -92,20 +93,6 @@ public class GameMaster : MonoBehaviour
         {
             PreparePhase.GetComponent<PreparePhase>().StartPreparePhase();
             PrepareFlag = true;
-        }
-
-        if (PrepareFlag && PreparePhase.GetComponent<PreparePhase>().EndOfPhase)
-        {
-            PrepareFlag = false;
-            
-            for (int i = 0; i < PreparePhase.GetComponent<PreparePhase>().Minions.Count; ++i)
-            {
-                Instantiate(PreparePhase.GetComponent<PreparePhase>().Minions[i], AttackStartPosition, Quaternion.identity);
-            }
-            AttackPlayer.GetComponent<Entity>().UnStop();
-            AttackPlayer.GetComponent<AttackPlayer>().initMinionList();
-            Timer.SetTimer(BattleTime);
-            BattleFlag = true;
         }
 
         if (BattleFlag && CheckVictory())
@@ -144,7 +131,21 @@ public class GameMaster : MonoBehaviour
             DefencePlayer.GetComponent<Entity>().Stop();
         }
 
-        if (RoundChangeInterval && Timer.TimerEnd()) 
+        if (!RoundChangeInterval && PrepareFlag && PreparePhase.GetComponent<PreparePhase>().EndOfPhase)
+        {
+            PrepareFlag = false;
+
+            for (int i = 0; i < PreparePhase.GetComponent<PreparePhase>().Minions.Count; ++i)
+            {
+                Instantiate(PreparePhase.GetComponent<PreparePhase>().Minions[i], AttackStartPosition, Quaternion.identity);
+            }
+            AttackPlayer.GetComponent<Entity>().UnStop();
+            AttackPlayer.GetComponent<AttackPlayer>().initMinionList();
+            Timer.SetTimer(BattleTime);
+            BattleFlag = true;
+        }
+
+        if (RoundChangeInterval && Timer.TimerEnd())
         {
             GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");
             for (int i = 0; i < minions.Length; ++i)
@@ -174,7 +175,8 @@ public class GameMaster : MonoBehaviour
             if (DefencePlayer.GetComponent<DeffencePlayer>().PlayerID == ID_PLAYER1)
             {
                 Player1Text.transform.GetChild(0).gameObject.SetActive(true);
-            } else
+            }
+            else
             {
                 Player2Text.transform.GetChild(0).gameObject.SetActive(true);
             }
@@ -217,7 +219,8 @@ public class GameMaster : MonoBehaviour
         {
             Debug.Log("Player1 won!!!!!");
             return true;
-        } else if (NumPlayerWin[1] >= 3)
+        }
+        else if (NumPlayerWin[1] >= 3)
         {
             Debug.Log("Player2 won!!!!!");
             return true;

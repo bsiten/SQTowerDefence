@@ -148,7 +148,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 16384
-  CannonLimit: 8
+  CannonLimit: 4
   NowCannonNum: 0
 --- !u!1001 &4849312674190877532
 PrefabInstance:

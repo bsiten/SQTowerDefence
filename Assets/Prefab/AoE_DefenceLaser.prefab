@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 2032390058591138775}
   - component: {fileID: 3039328901785095203}
   m_Layer: 12
-  m_Name: AoE_DefenceBeam
+  m_Name: AoE_DefenceLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buff:
     name: Damage
-    intensity: 10
+    intensity: 3
   buffDuration: 0
   duration: 0
 --- !u!1 &5730098907659596628

@@ -65,7 +65,7 @@ MonoBehaviour:
   maxMovementSpeed: 5
   status:
     health: 0
-    maxHealth: 300
+    maxHealth: 100
   destroyObjectList: []
   nonRegenelation: 1
   StopFlag: 0
@@ -276,15 +276,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: b744d3df7e4611243a5300a678aabbbd, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: b744d3df7e4611243a5300a678aabbbd, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: b744d3df7e4611243a5300a678aabbbd, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b744d3df7e4611243a5300a678aabbbd, type: 3}

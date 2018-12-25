@@ -128,7 +128,7 @@ MonoBehaviour:
   maxMovementSpeed: 100
   status:
     health: 0
-    maxHealth: 100
+    maxHealth: 80
   destroyObjectList: []
   nonRegenelation: 0
   StopFlag: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   followerStayDistance: 1
   targetStayDistance: 1
   isCharge: 0
-  fireRate: 2
+  fireRate: 1
   followOffset: {x: 1, y: 0, z: 0}
   launchPoint: {x: 0, y: 1, z: 0}
 --- !u!54 &1423888315767918321
@@ -278,15 +278,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 42bbcb6887b11c0418a5a2ed4517a034, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 42bbcb6887b11c0418a5a2ed4517a034, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 42bbcb6887b11c0418a5a2ed4517a034, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42bbcb6887b11c0418a5a2ed4517a034, type: 3}

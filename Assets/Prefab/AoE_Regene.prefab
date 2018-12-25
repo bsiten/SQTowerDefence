@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buff:
     name: Regeneration
-    intensity: 3
+    intensity: 1
   buffDuration: 1
   duration: 1
 --- !u!1 &6990282900148378033

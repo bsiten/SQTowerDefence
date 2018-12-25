@@ -114,7 +114,7 @@ MonoBehaviour:
   maxMovementSpeed: 0
   status:
     health: 0
-    maxHealth: 100
+    maxHealth: 70
   destroyObjectList: []
   nonRegenelation: 0
   StopFlag: 0

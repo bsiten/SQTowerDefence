@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buff:
     name: Injured
-    intensity: 1.6
+    intensity: 0
   buffDuration: 1
   duration: 1
 --- !u!1 &5616747207306199561
