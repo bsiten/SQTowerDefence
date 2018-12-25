@@ -16,12 +16,9 @@ public class GameMaster : MonoBehaviour
     private bool EndOfPreparePhase = false;
 
     public AttackPlayer AttackPlayer;
-    private AttackPlayer TempAttackPlayer;
     public DeffencePlayer DefencePlayer;
-    private DeffencePlayer TempDefencePlayer;
 
     public GameObject Tower;
-    private GameObject TempTower;
 
     public int[] NumPlayerWin = new int[2];
     const int ID_PLAYER1 = 0;
@@ -39,6 +36,7 @@ public class GameMaster : MonoBehaviour
 
     public Text Player1Text;
     public Text Player2Text;
+    public Text WinText;
 
     // Start is called before the first frame update
     void Start()
@@ -49,10 +47,7 @@ public class GameMaster : MonoBehaviour
         DefencePlayer.GetComponent<DeffencePlayer>().PlayerID = ID_PLAYER2;
 
         Tower = Instantiate(Tower, DeffenceStartPosition, Quaternion.identity);
-        TempTower = Tower;
 
-        TempAttackPlayer = AttackPlayer;
-        TempDefencePlayer = DefencePlayer;
         AttackPlayer.GetComponent<Entity>().Stop();
 
         Round = 0;
@@ -72,22 +67,25 @@ public class GameMaster : MonoBehaviour
 
     void MainGameLoop()
     {
-        
-        if (AttackPlayer.GetComponent<AttackPlayer>().PlayerID == ID_PLAYER1)
+        if (!RoundChangeInterval)
         {
-            Player1Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(880, 290);
-        } else
-        {
-            Player2Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(880, 290);
-        }
+            if (AttackPlayer.GetComponent<AttackPlayer>().PlayerID == ID_PLAYER1)
+            {
+                Player1Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(880, 290);
+            }
+            else
+            {
+                Player2Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(880, 290);
+            }
 
-        if (DefencePlayer.GetComponent<DeffencePlayer>().PlayerID == ID_PLAYER1)
-        {
-            Player1Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(-650, 290);
-        }
-        else
-        {
-            Player2Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(-650, 290);
+            if (DefencePlayer.GetComponent<DeffencePlayer>().PlayerID == ID_PLAYER1)
+            {
+                Player1Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(-650, 290);
+            }
+            else
+            {
+                Player2Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(-650, 290);
+            }
         }
 
         if (!PrepareFlag && !BattleFlag && !RoundChangeInterval)
@@ -112,6 +110,8 @@ public class GameMaster : MonoBehaviour
 
         if (BattleFlag && CheckVictory())
         {
+            Timer.TimerEnd();
+
             GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");
 
             for (int i = 0; i < minions.Length; ++i)
@@ -126,8 +126,13 @@ public class GameMaster : MonoBehaviour
             }
 
             Round++;
+            AttackPlayer.GetComponent<Entity>().UnStop();
+            DefencePlayer.GetComponent<Entity>().UnStop();
             AttackPlayer.transform.position = AttackStartPosition;
             DefencePlayer.transform.position = DeffenceStartPosition;
+            AttackPlayer.GetComponent<Entity>().status.Reset();
+            DefencePlayer.GetComponent<Entity>().status.Reset();
+            Tower.GetComponent<Entity>().status.Reset();
             DefencePlayer.GetComponent<DeffencePlayer>().NowCannonNum = 0;
             AttackPlayer.GetComponent<AttackPlayer>().PlayerID = 1 - AttackPlayer.GetComponent<AttackPlayer>().PlayerID;
             DefencePlayer.GetComponent<DeffencePlayer>().PlayerID = 1 - DefencePlayer.GetComponent<DeffencePlayer>().PlayerID;
@@ -152,6 +157,9 @@ public class GameMaster : MonoBehaviour
             {
                 Destroy(cannons[i].GetComponent<Entity>().transform.gameObject);
             }
+            Player1Text.transform.GetChild(0).gameObject.SetActive(false);
+            Player2Text.transform.GetChild(0).gameObject.SetActive(false);
+
             DefencePlayer.GetComponent<Entity>().UnStop();
             RoundChangeInterval = false;
         }
@@ -163,27 +171,41 @@ public class GameMaster : MonoBehaviour
         if (BattleFlag && Timer.TimerEnd())
         {
             NumPlayerWin[DefencePlayer.GetComponent<DeffencePlayer>().PlayerID]++;
-            return true;
-        }
-
-        if (DefencePlayer.GetComponent<Entity>().status.health <= 0)
-        {
-            NumPlayerWin[AttackPlayer.GetComponent<AttackPlayer>().PlayerID]++;
-            DefencePlayer.GetComponent<Entity>().status.Reset();
+            if (DefencePlayer.GetComponent<DeffencePlayer>().PlayerID == ID_PLAYER1)
+            {
+                Player1Text.transform.GetChild(0).gameObject.SetActive(true);
+            } else
+            {
+                Player2Text.transform.GetChild(0).gameObject.SetActive(true);
+            }
             return true;
         }
 
         if (AttackPlayer.GetComponent<Entity>().status.health <= 0)
         {
             NumPlayerWin[DefencePlayer.GetComponent<DeffencePlayer>().PlayerID]++;
-            AttackPlayer.GetComponent<Entity>().status.Reset();
+            if (DefencePlayer.GetComponent<DeffencePlayer>().PlayerID == ID_PLAYER1)
+            {
+                Player1Text.transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else
+            {
+                Player2Text.transform.GetChild(0).gameObject.SetActive(true);
+            }
             return true;
         }
 
         if (Tower.GetComponent<Entity>().status.health <= 0)
         {
             NumPlayerWin[AttackPlayer.GetComponent<AttackPlayer>().PlayerID]++;
-            Tower.GetComponent<Entity>().status.Reset();
+            if (AttackPlayer.GetComponent<AttackPlayer>().PlayerID == ID_PLAYER1)
+            {
+                Player1Text.transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else
+            {
+                Player2Text.transform.GetChild(0).gameObject.SetActive(true);
+            }
             return true;
         }
         return false;

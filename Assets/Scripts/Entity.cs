@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Entity : MonoBehaviour
 {
@@ -17,9 +18,19 @@ public class Entity : MonoBehaviour
     public bool StopFlag = false;
     public Vector3 PrevPosition;
 
+    //private Canvas canvas;
+
+    //private HPStatusUI hpStatusUI;
+
     public void Start()
     {
         status.Reset();
+
+        //canvas = (Canvas)Resources.Load("HPCanvas");
+
+        //canvas.transform.parent = this.transform;
+
+        //hpStatusUI = GetComponentInChildren<HPStatusUI>();
         // foreach (var destroyObject in destroyObjectList)
         // {
         //     Instantiate(destroyObject, transform.position + Vector3.up, transform.rotation);
@@ -30,6 +41,9 @@ public class Entity : MonoBehaviour
     {
         if (!StopFlag)
         {
+           // if (hpStatusUI != null) {
+              //  hpStatusUI.UpdateHPValue();
+            //}
             BuffProcess();
             StatusCheck();
             Move();
@@ -183,6 +197,10 @@ public class Entity : MonoBehaviour
         //死亡処理
         if (status.health <= 0)
         {
+            //if (hpStatusUI != null)
+            //{
+              //  hpStatusUI.SetDisable();
+            //}
             Dead();
         }
     }
@@ -200,7 +218,7 @@ public class Entity : MonoBehaviour
             }
         }
         // Destroy(transform.gameObject);
-        transform.gameObject.SetActive(false);
+        Stop();
     }
 
     public void UnStop()

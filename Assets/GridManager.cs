@@ -13,7 +13,8 @@ public class GridManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 4; ++i)
+
+        for (int i = -1; i < 4; ++i)
         {
             /*int margin = i + 1;
             if (margin == 4 || margin = 3)
@@ -21,6 +22,11 @@ public class GridManager : MonoBehaviour
                 margin--; 
             }*/
             int margin = i;
+
+            if (i == -1)
+            {
+                margin = 1;
+            }
 
             for (int j = 0 + margin; j < 10 - margin; ++j)
             {
