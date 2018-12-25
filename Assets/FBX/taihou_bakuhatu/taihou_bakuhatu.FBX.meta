@@ -21,7 +21,12 @@ ModelImporter:
     4300000: Box001
     4300002: "\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8001"
     4300004: Cylinder001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 95ce2a81137539d4abc3bd781dc1141a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

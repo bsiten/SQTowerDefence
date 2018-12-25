@@ -16,7 +16,12 @@ ModelImporter:
     3300002: Sphere001
     4300000: Cylinder001
     4300002: Sphere001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: d874a3d9d2e0495419183a4ada19aeec, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

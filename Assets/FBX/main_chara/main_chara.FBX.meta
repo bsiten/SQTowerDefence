@@ -166,7 +166,12 @@ ModelImporter:
     4300058: Sphere002
     4300060: Cylinder031
     4300062: "\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8"
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 15 - Default
+    second: {fileID: 2100000, guid: 189d4c144a7b27c4cae9103a9cc4eea7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
