@@ -1893,6 +1893,8 @@ MonoBehaviour:
     type: 3}
   PrefabMinion_Longrange: {fileID: 2421124287724829318, guid: 8849d19e1ef8a43458159986e4053707,
     type: 3}
+  PrefabMinion_Cure: {fileID: 2888166611059450782, guid: 245d0a9beea0f1d479efd8b72ce1fde3,
+    type: 3}
   Margin: 120
 --- !u!1 &1816629922
 GameObject:
@@ -1928,8 +1930,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 800, y: 200}
+  m_AnchoredPosition: {x: 0, y: 250}
+  m_SizeDelta: {x: 900, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1816629924
 MonoBehaviour:
