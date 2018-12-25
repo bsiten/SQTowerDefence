@@ -1134,7 +1134,7 @@ MonoBehaviour:
   PrepareFlag: 0
   BattleFlag: 0
   RoundChangeInterval: 0
-  RoundChangeIntervalTime: 10
+  RoundChangeIntervalTime: 20
   Player1Text: {fileID: 1511576665}
   Player2Text: {fileID: 206323340}
   WinText: {fileID: 0}
