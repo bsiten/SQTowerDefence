@@ -5,20 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class StartScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    public void Hoge()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void OnClick()
-    {
+        Debug.Log("aaa");
         SceneManager.LoadScene("ComboBattle");
     }
 }
