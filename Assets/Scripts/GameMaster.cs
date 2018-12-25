@@ -61,7 +61,7 @@ public class GameMaster : MonoBehaviour
             MainGameLoop();
         } else
         {
-            SceneManager.LoadScene("Result");
+            //SceneManager.LoadScene("Result");
         }
     }
 
@@ -94,7 +94,7 @@ public class GameMaster : MonoBehaviour
             PrepareFlag = true;
         }
 
-        if (PrepareFlag && PreparePhase.GetComponent<PreparePhase>().EndOfPhase)
+        if (!RoundChangeInterval && !BattleFlag && PrepareFlag && PreparePhase.GetComponent<PreparePhase>().EndOfPhase)
         {
             PrepareFlag = false;
             
@@ -110,6 +110,7 @@ public class GameMaster : MonoBehaviour
 
         if (BattleFlag && CheckVictory())
         {
+            Timer.Reset();
             Timer.TimerEnd();
 
             GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");

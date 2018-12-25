@@ -40,6 +40,11 @@ public class TimerManager : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        TotalTime = 0;
+    }
+
     void FixedUpdate()
     {
         if (StartTimer)

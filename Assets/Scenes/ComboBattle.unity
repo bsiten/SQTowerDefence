@@ -765,7 +765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Round: 0
   Timer: {fileID: 753313286}
-  BattleTime: 10
+  BattleTime: 120
   PreparePhase: {fileID: 1548469222}
   AttackPlayer: {fileID: 1463424666}
   DefencePlayer: {fileID: 2049807843}
@@ -777,7 +777,7 @@ MonoBehaviour:
   PrepareFlag: 0
   BattleFlag: 0
   RoundChangeInterval: 0
-  RoundChangeIntervalTime: 10
+  RoundChangeIntervalTime: 30
   Player1Text: {fileID: 1511576665}
   Player2Text: {fileID: 206323340}
   WinText: {fileID: 0}
