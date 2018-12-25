@@ -16,8 +16,6 @@ public class DeffencePlayer : Entity
 
     public LayerMask mask;
 
-    public List<GameObject> Cannons;
-
     public int CannonLimit = 8;
     public int NowCannonNum = 0;
 

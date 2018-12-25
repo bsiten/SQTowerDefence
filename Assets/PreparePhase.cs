@@ -31,6 +31,7 @@ public class PreparePhase : MonoBehaviour
             return;
         }
         Minions = new List<GameObject>(5);
+        MiniMana = TempMinimana;
         PrepareNow = true;
         panel.SetActive(true);
         Timer.SetTimer(LimitTime);
@@ -42,26 +43,27 @@ public class PreparePhase : MonoBehaviour
     {
         if (Timer.TimerEnd())
         {
-            Debug.Log("end");
             EndPhase();
         }
     }
 
     public void EndPhase()
     {
-        Debug.Log("EndPreparePhase");
         MiniMana.UpdateMinions();
         Minions = MiniMana.GetMinions();
 
         panel.SetActive(false);
 
         EndOfPhase = true;
+        
     }
 
     public void ResetStatus()
     {
-        MiniMana = TempMinimana;
+        MiniMana = null;
         Minions = null;
+        PrepareNow = false;
+        EndOfPhase = false;
     }
 
 }

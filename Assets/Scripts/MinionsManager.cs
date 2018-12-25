@@ -14,17 +14,24 @@ public class MinionsManager : MonoBehaviour
     public GameObject PrefabMinion;
     public GameObject PrefabMinion_Longrange;
 
+    public int Margin = 120;
+
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = -2; i < 3; ++i)
+        for (int i = -1; i < 4; ++i)
         {
             Vector3 pos = PanelTrans.position;
             pos.y = 800;
-            pos.x += i * 150;
+            pos.x += i * Margin;
             Image Instant = Instantiate(MinionImage, pos, Quaternion.identity);
             Instant.transform.parent = PanelTrans;
             MinionImages.Add(Instant);
+        }
+        
+        for (int i = 0; i < 5; ++i)
+        {
+            Minions.Add(null);
         }
     }
 
@@ -40,15 +47,18 @@ public class MinionsManager : MonoBehaviour
         {
             int id = MinionImages[i].GetComponent<DropObject>().MinionId;
 
-            Debug.Log(id);
 
             if (id == 1)
             {
-                Minions.Add(PrefabMinion);
+                Minions[i] = PrefabMinion;
             }
             else if (id == 2)
             {
-                Minions.Add(PrefabMinion_Longrange);
+                Minions[i] = PrefabMinion_Longrange;
+            }
+            else if (id == 3)
+            {
+
             }
 
         }
