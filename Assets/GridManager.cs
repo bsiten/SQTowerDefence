@@ -25,7 +25,8 @@ public class GridManager : MonoBehaviour
             for (int j = 0 + margin; j < 10 - margin; ++j)
             {
                 // Vector3 tilePos = new Vector3(-(Tile.transform.localScale.x * 5 + Tile.transform.localScale.x * 10 * i), 1.26f, Tile.transform.localScale.z * 10 * j - 11f);
-                Vector3 tilePos = new Vector3(-(Tile.transform.localScale.x * 5 + Tile.transform.localScale.x * 10 * i), 0f, Tile.transform.localScale.z * 10 * j - 11f);
+                // Vector3 tilePos = new Vector3(-(Tile.transform.localScale.x * 5 + Tile.transform.localScale.x * 10 * i), 0f, Tile.transform.localScale.z * 10 * j - 11f);
+                Vector3 tilePos = new Vector3(-(Tile.transform.localScale.x * 10 * i), 0f, Tile.transform.localScale.z * 10 * j - 11f);
 
                 GameObject instantObject = (GameObject)GameObject.Instantiate(Tile, tilePos, Quaternion.identity);
 

@@ -46,7 +46,7 @@ public class DeffencePlayer : Entity
 
         // 1.
         // Rayの作成
-        Ray ray = new Ray(transform.position, transform.forward + new Vector3(0, -0.6f, 0));
+        Ray ray = new Ray(transform.position + transform.up * 0.5f, transform.forward + new Vector3(0, -0.6f, 0));
 
         // 2.		
         // Rayが衝突したコライダーの情報を得る
@@ -64,7 +64,7 @@ public class DeffencePlayer : Entity
 
                 //B button
                 if (!hit.collider.GetComponent<Plane>().IsLocated && NowCannonNum <= CannonLimit)
-                { 
+                {
                     if (Input.GetKey("joystick button 1") || Input.GetKey(KeyCode.R))
                     {
                         hit.collider.GetComponent<Plane>().LocateObject = (GameObject)Resources.Load("Cannon");

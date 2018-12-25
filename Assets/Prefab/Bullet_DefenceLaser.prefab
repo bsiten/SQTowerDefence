@@ -99,8 +99,10 @@ MonoBehaviour:
     maxHealth: 100
   destroyObjectList: []
   nonRegenelation: 0
+  StopFlag: 0
+  PrevPosition: {x: 0, y: 0, z: 0}
   aliveTime: 10
-  explodeObject: {fileID: 2005564311471089204, guid: 4184991125c52b64cb2b04e3b4fc8fbf,
+  explodeObject: {fileID: 2032390058591138770, guid: 173b63049f4ac3e46881345241d3bf23,
     type: 3}
   inpactPoint: {x: 0, y: 0, z: 0}
   isGravity: 0
